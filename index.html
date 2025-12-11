@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contattaci - DSA Technology</title>
+    <style>
+        /* Stili Generali e Reset */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenitore stile "Card" */
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            margin: 20px;
+            border-top: 5px solid #e65100; /* Arancione DSA */
+        }
+
+        /* Header e Logo */
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .form-header h2 {
+            color: #333;
+            font-size: 24px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Stili dei Campi del Form */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #e65100; /* Focus Arancione DSA */
+            outline: none;
+            background-color: #fffaf5;
+        }
+
+        /* Bottone di Invio */
+        input[type="submit"] {
+            width: 100%;
+            background-color: #e65100; /* Arancione DSA */
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #bf360c; /* Arancione più scuro al passaggio del mouse */
+        }
+
+        /* Footer */
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .form-footer a {
+            color: #e65100;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <!--<img src="https://www.dsatechnology.it/wp-content/uploads/2021/05/logo_dsa.png" alt="DSA Technology Logo">-->
+            <img src="https://www.dsatechnology.it/wp-content/uploads/2025/01/cropped-Logodsasito2025.png" alt="DSA Technology Logo">
+            <h2>Lascia i tuoi dati</h2>
+            <p>Ti ricontatteremo al più presto con le informazioni richieste.</p>
+        </div>
+        <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKY00000ZGm5M" method="POST">
+
+            <input type=hidden name="oid" value="00DKY00000ZGm5M">
+            <input type=hidden name="retURL" value="https://www.dsatechnology.it/">
+            
+            <input type="hidden" name="lead_source" value="Fiera Sicurezza 2025">
+
+            <label for="first_name">Nome</label>
+            <input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="Il tuo nome" required />
+
+            <label for="last_name">Cognome</label>
+            <input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Il tuo cognome" required />
+
+            <label for="email">Email</label>
+            <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="nome@azienda.it" required />
+
+            <label for="mobile">Cellulare</label>
+            <input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="+39 333..." />
+
+            <label for="company">Azienda</label>
+            <input id="company" maxlength="40" name="company" size="20" type="text" placeholder="Nome della tua azienda" />
+
+            <label for="employees">N° Dipendenti</label>
+            <input id="employees" maxlength="40" name="employees" size="20" type="text" placeholder="0-10, 10-50, 50-100..." />
+            
+            <label for="city">Città</label>
+            <input id="city" maxlength="40" name="city" size="20" type="text" placeholder="Città" />
+
+            <label for="street">Via</label>
+            <input id="street" maxlength="40" name="street" size="20" type="text" placeholder="Via..." />
+            <!--<textarea name="street" placeholder="Via..."></textarea><br>-->
+
+            <label for="city">Città</label>
+            <input id="city" maxlength="40" name="city" size="20" type="text" placeholder="Città" />
+
+            <label for="zip">CAP</label>
+            <input  id="zip" maxlength="20" name="zip" size="20" type="text" placeholder="Codice Postale"/><br>
+
+            <label for="state">Stato/Provincia</label>
+            <input  id="state" maxlength="20" name="state" size="20" type="text" placeholder="Regione"/><br>
+
+            <label for="country">Paese</label>
+            <input  id="country" maxlength="40" name="country" size="20" type="text" placeholder="Paese"/><br>
+
+            <input type="submit" name="submit" value="Invia Richiesta">
+        </form>
+        <div class="form-footer">
+            &copy; 2025 DSA Technology S.r.l. - <a href="https://www.dsatechnology.it/privacy-policy/">Privacy Policy</a>
+        </div>
+    </div>
+</body>
+</html>
