@@ -27,7 +27,7 @@
         
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="avatar"><img src="https://www.w3schools.com/howto/img_avatar.png" alt="Me"></div>
+                <div class="avatar"><img src="https://github.com/kaps786/sfsmbdemo/must-energia.png" alt="Me"></div>
                 <div class="header-icons">
                     <i class="fas fa-circle-notch"></i>
                     <i class="fas fa-comment-alt"></i>
@@ -45,7 +45,7 @@
             <div class="contact-list">
                 <div class="contact active">
                     <div class="avatar-contact">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Must">
+                        <img src="https://github.com/kaps786/sfsmbdemo/must-energia.png" alt="Must">
                     </div>
                     <div class="contact-info">
                         <div class="contact-top">
@@ -79,7 +79,7 @@
         <div class="chat-area">
             <div class="chat-header">
                 <div class="avatar-contact">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Must">
+                    <img src="https://github.com/kaps786/sfsmbdemo/must-energia.png" alt="Must">
                 </div>
                 <div class="chat-info">
                     <span class="chat-name">Must Energia Supporto</span>
@@ -127,4 +127,20 @@
                 // Ho cambiato in 'it' per forzare l'italiano nella chat
                 embeddedservice_bootstrap.settings.language = 'it'; 
 
-                embeddedservice_bootstrap
+                embeddedservice_bootstrap.init(
+                    '00DHu00000uSpSk',
+                    'MustEnergiaChat',
+                    'https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336',
+                    {
+                        scrt2URL: 'https://at1766405648944.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+</body>
+</html>
