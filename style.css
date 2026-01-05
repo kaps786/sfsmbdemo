@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #d9dbd5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.green-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 127px;
+    background-color: #009688;
+    z-index: -1;
+}
+
+.app-container {
+    width: 1396px;
+    height: 95vh;
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.06), 0 2px 5px 0 rgba(0,0,0,.2);
+    display: flex;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 30%; /* Standard 400px */
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.sidebar-header, .chat-header {
+    height: 59px;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid #d1d7db;
+}
+
+.avatar img, .avatar-contact img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.header-icons i {
+    color: #54656f;
+    margin-left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search-box {
+    background-color: #f6f6f6;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ededed;
+}
+
+.input-wrapper {
+    background-color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    border: none;
+    outline: none;
+    margin-left: 15px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.contact-list {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.contact {
+    display: flex;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.contact:hover, .contact.active {
+    background-color: #f0f2f5;
+}
+
+.contact-info {
+    margin-left: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+
+.contact-name {
+    font-size: 16px;
+    color: #111b21;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #667781;
+}
+
+.contact-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-preview {
+    font-size: 13px;
+    color: #667781;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* CHAT AREA */
+.chat-area {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.chat-status {
+    font-size: 12px;
+    color: #667781;
+    margin-left: 15px;
+    display: block;
+}
+.chat-name {
+    margin-left: 15px;
+    font-weight: 500;
+}
+
+.chat-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chat-background {
+    flex: 1;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-color: #e5ddd5;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.bubble {
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px .5px rgba(0,0,0,.13);
+    max-width: 60%;
+    font-size: 14.2px;
+    line-height: 19px;
+    position: relative;
+    color: #111b21;
+}
+
+.time {
+    font-size: 11px;
+    color: #999;
+    float: right;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.chat-input-area {
+    height: 62px;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-left: 1px solid #ddd;
+}
+
+.chat-input-area i {
+    color: #54656f;
+    font-size: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.chat-input-area input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    margin: 0 10px;
+}
+
+/* OVERRIDE SALESFORCE WIDGET CSS */
+/* Questo serve per rendere il bottone Salesforce meno invasivo o posizionarlo meglio */
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #009688 !important; /* Verde WhatsApp */
+    font-family: inherit !important;
+}
