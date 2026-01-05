@@ -1,241 +1,186 @@
+/* RESET E BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #d9dbd5;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-.green-header {
-    position: absolute;
+/* NAVBAR */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 127px;
-    background-color: #009688;
-    z-index: -1;
+    z-index: 100;
 }
 
-.app-container {
-    width: 1396px;
-    height: 95vh;
-    background-color: white;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.06), 0 2px 5px 0 rgba(0,0,0,.2);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
     display: flex;
-    border-radius: 0;
-    overflow: hidden;
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 30%; /* Standard 400px */
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-}
-
-.sidebar-header, .chat-header {
-    height: 59px;
-    background-color: #ededed;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
-    border-bottom: 1px solid #d1d7db;
-}
-
-.avatar img, .avatar-contact img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.header-icons i {
-    color: #54656f;
-    margin-left: 20px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.search-box {
-    background-color: #f6f6f6;
-    padding: 8px 12px;
-    border-bottom: 1px solid #ededed;
-}
-
-.input-wrapper {
-    background-color: white;
-    border-radius: 8px;
-    padding: 6px 12px;
-    display: flex;
     align-items: center;
 }
 
-.input-wrapper input {
-    border: none;
-    outline: none;
-    margin-left: 15px;
-    width: 100%;
-    font-size: 14px;
+.logo img {
+    height: 50px; /* Adatta il logo */
 }
 
-.contact-list {
-    flex: 1;
-    overflow-y: auto;
-    background-color: white;
-}
-
-.contact {
-    display: flex;
-    padding: 12px 16px;
-    cursor: pointer;
-    border-bottom: 1px solid #f2f2f2;
-}
-
-.contact:hover, .contact.active {
-    background-color: #f0f2f5;
-}
-
-.contact-info {
-    margin-left: 15px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.contact-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 3px;
-}
-
-.contact-name {
-    font-size: 16px;
-    color: #111b21;
-}
-
-.message-time {
-    font-size: 12px;
-    color: #667781;
-}
-
-.contact-bottom {
-    display: flex;
-    justify-content: space-between;
-}
-
-.message-preview {
-    font-size: 13px;
-    color: #667781;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-}
-
-/* CHAT AREA */
-.chat-area {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.chat-status {
-    font-size: 12px;
-    color: #667781;
-    margin-left: 15px;
-    display: block;
-}
-.chat-name {
-    margin-left: 15px;
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 30px;
     font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
 }
 
-.chat-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.nav-links a:hover, .nav-links a.active {
+    color: #8ec03f; /* Verde Must Energia approssimativo */
 }
 
-.chat-background {
-    flex: 1;
-    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
-    background-color: #e5ddd5;
-    padding: 20px;
-    overflow-y: auto;
+.btn-contact {
+    background-color: #8ec03f;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
-.message {
-    display: flex;
-    margin-bottom: 10px;
+.btn-contact:hover {
+    background-color: #7ab02c;
 }
 
-.message.received {
-    justify-content: flex-start;
-}
-
-.bubble {
-    background-color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px .5px rgba(0,0,0,.13);
-    max-width: 60%;
-    font-size: 14.2px;
-    line-height: 19px;
+/* HERO SECTION */
+.hero {
+    height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
     position: relative;
-    color: #111b21;
-}
-
-.time {
-    font-size: 11px;
-    color: #999;
-    float: right;
-    margin-top: 5px;
-    margin-left: 10px;
-}
-
-.chat-input-area {
-    height: 62px;
-    background-color: #f0f2f5;
     display: flex;
     align-items: center;
-    padding: 10px 16px;
-    border-left: 1px solid #ddd;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
 
-.chat-input-area i {
-    color: #54656f;
-    font-size: 24px;
-    margin: 0 10px;
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Scurisce l'immagine per leggere il testo */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+.btn-hero {
+    background-color: #8ec03f;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.btn-hero:hover {
+    transform: scale(1.05);
+    background-color: #7ab02c;
+}
+
+/* FEATURES SECTION */
+.features {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.features .container {
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    min-width: 250px;
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: #8ec03f;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+/* BOTTONE WHATSAPP FLOTTANTE */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; /* Verde ufficiale WhatsApp */
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: all 0.3s;
+    animation: pulse 2s infinite;
 }
 
-.chat-input-area input {
-    flex: 1;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    outline: none;
-    font-size: 15px;
-    margin: 0 10px;
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
 }
 
-/* OVERRIDE SALESFORCE WIDGET CSS */
-/* Questo serve per rendere il bottone Salesforce meno invasivo o posizionarlo meglio */
-.embeddedServiceHelpButton .helpButton .uiButton {
-    background-color: #009688 !important; /* Verde WhatsApp */
-    font-family: inherit !important;
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+
+/* NASCONDI IL BOTTONE STANDARD DI SALESFORCE */
+/* Lo nascondiamo perché useremo il nostro bottone WhatsApp per aprirlo */
+.embeddedServiceHelpButton {
+    display: none !important; 
+}
+/* Nota: In alcune versioni MIAW il bottone ha classi diverse. 
+   Se vedi DUE bottoni, aggiungeremo altro CSS. */
