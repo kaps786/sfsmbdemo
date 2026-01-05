@@ -3,128 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp - Must Energia</title>
+    <title>Must Energia - Soluzioni Fotovoltaiche</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* Personalizzazione del bottone Salesforce per farlo sembrare WhatsApp */
-        .embeddedServiceHelpButton .helpButton .uiButton {
-            background-color: #009688 !important; /* Verde WhatsApp */
-            font-family: inherit !important;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
-        }
-        .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            outline: 1px solid #009688 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="green-header"></div>
-    
-    <div class="app-container">
-        
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <div class="avatar"><img src="must-energia.png" alt="Me"></div>
-                <div class="header-icons">
-                    <i class="fas fa-circle-notch"></i>
-                    <i class="fas fa-comment-alt"></i>
-                    <i class="fas fa-ellipsis-v"></i>
-                </div>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="https://kaps786.github.io/sfsmbdemo/logo-must.png" alt="Must Energia Logo">
             </div>
-            
-            <div class="search-box">
-                <div class="input-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat">
-                </div>
+            <nav class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Chi Siamo</a>
+                <a href="#">Fotovoltaico</a>
+                <a href="#">Eolico</a>
+                <a href="#" class="btn-contact">Contattaci</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>L'energia del futuro,<br>oggi a casa tua.</h1>
+            <p>Impianti fotovoltaici ed eolici per l'efficienza energetica della tua azienda e della tua famiglia.</p>
+            <a href="#" class="btn-hero">Richiedi Preventivo</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-card">
+                <i class="fas fa-solar-panel"></i>
+                <h3>Fotovoltaico</h3>
+                <p>Produci la tua energia pulita e risparmia in bolletta fin dal primo giorno.</p>
             </div>
-
-            <div class="contact-list">
-                <div class="contact active">
-                    <div class="avatar-contact">
-                        <img src="must-energia.png" alt="Must">
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-top">
-                            <span class="contact-name">Must Energia Supporto</span>
-                            <span class="message-time">Adesso</span>
-                        </div>
-                        <div class="contact-bottom">
-                            <span class="message-preview">Agentforce: Clicca in basso per chattare 👇</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact">
-                    <div class="avatar-contact"><img src="https://www.w3schools.com/howto/img_avatar2.png" alt="User"></div>
-                    <div class="contact-info">
-                        <div class="contact-top"><span class="contact-name">Mario Rossi</span><span class="message-time">10:30</span></div>
-                        <div class="contact-bottom"><span class="message-preview">Hai ricevuto il contratto firmato?</span></div>
-                    </div>
-                </div>
-                
-                <div class="contact">
-                    <div class="avatar-contact"><img src="https://www.w3schools.com/w3images/avatar5.png" alt="User"></div>
-                    <div class="contact-info">
-                        <div class="contact-top"><span class="contact-name">Installatori Zona 4</span><span class="message-time">Ieri</span></div>
-                        <div class="contact-bottom"><span class="message-preview">Foto del tetto inviate.</span></div>
-                    </div>
-                </div>
+            <div class="feature-card">
+                <i class="fas fa-wind"></i>
+                <h3>Eolico</h3>
+                <p>Soluzioni mini-eoliche per sfruttare la forza del vento.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>Assistenza</h3>
+                <p>Un team dedicato sempre al tuo fianco per ogni necessità.</p>
             </div>
         </div>
+    </section>
 
-        <div class="chat-area">
-            <div class="chat-header">
-                <div class="avatar-contact">
-                    <img src="must-energia.png" alt="Must">
-                </div>
-                <div class="chat-info">
-                    <span class="chat-name">Must Energia Supporto</span>
-                    <span class="chat-status">online | Agentforce AI</span>
-                </div>
-                <div class="header-icons">
-                    <i class="fas fa-search"></i>
-                    <i class="fas fa-paperclip"></i>
-                    <i class="fas fa-ellipsis-v"></i>
-                </div>
-            </div>
-
-            <div class="chat-background">
-                <div class="message received">
-                    <div class="bubble">
-                        Ciao! 👋 Benvenuto nel canale partner di <b>Must Energia</b>.<br><br>
-                        Il nostro assistente AI Agentforce è pronto ad aiutarti con:<br>
-                        🔹 Preventivi Fotovoltaici<br>
-                        🔹 Analisi Bollette<br>
-                        🔹 Supporto Tecnico
-                        <span class="time">10:00</span>
-                    </div>
-                </div>
-
-                <div class="message received">
-                    <div class="bubble">
-                        <b>Clicca sul pulsante della chat in basso a destra</b> per avviare la conversazione con l'Agente.
-                        <span class="time">10:01</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="chat-input-area">
-                <i class="far fa-smile"></i>
-                <input type="text" placeholder="Usa la chat in basso a destra..." disabled>
-                <i class="fas fa-microphone"></i>
-            </div>
-
-        </div>
+    <div id="whatsapp-trigger" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
     </div>
+
 
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
-                // Ho cambiato in 'it' per forzare l'italiano nella chat
                 embeddedservice_bootstrap.settings.language = 'it'; 
 
                 embeddedservice_bootstrap.init(
@@ -141,6 +78,20 @@
         };
     </script>
     <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+    <script>
+        document.getElementById('whatsapp-trigger').addEventListener('click', function() {
+            try {
+                // Tenta di aprire la chat usando l'API standard di Salesforce MIAW
+                embeddedservice_bootstrap.utilAPI.launchChat();
+            } catch (e) {
+                console.log("Chat API non ancora pronta o errore: " + e);
+                // Fallback: simula il click sul bottone nascosto (se esiste)
+                const sfButton = document.querySelector('.embeddedServiceHelpButton .uiButton');
+                if(sfButton) sfButton.click();
+            }
+        });
+    </script>
 
 </body>
 </html>
