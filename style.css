@@ -177,10 +177,18 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* NASCONDI IL BOTTONE STANDARD DI SALESFORCE */
-/* Lo nascondiamo perché useremo il nostro bottone WhatsApp per aprirlo */
-.embeddedServiceHelpButton {
-    display: none !important; 
+/* NASCONDE IL BOTTONE STANDARD DI SALESFORCE */
+
+/* Per le versioni standard */
+.embeddedServiceHelpButton,
+.helpButton {
+    display: none !important;
 }
-/* Nota: In alcune versioni MIAW il bottone ha classi diverse. 
-   Se vedi DUE bottoni, aggiungeremo altro CSS. */
+
+/* Per le versioni web component (MIAW) */
+embeddedservice-bootstrap-chat-launch-button {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
