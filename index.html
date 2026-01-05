@@ -54,8 +54,15 @@
         </div>
     </section>
 
-    <div id="whatsapp-trigger" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
+    <div class="floating-contact-container">
+    
+        <a href="https://wa.me/39INSERISCI_QUI_IL_TUO_NUMERO" target="_blank" class="float-btn whatsapp-btn" title="Scrivici su WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    
+        <button id="agentforce-trigger" class="float-btn agent-btn" title="Chatta con la nostra AI">
+            <i class="fas fa-robot"></i>
+            </button>
     </div>
 
 
@@ -80,7 +87,7 @@
     <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     <script>
-        document.getElementById('whatsapp-trigger').addEventListener('click', function() {
+        document.getElementById('agentforce-trigger').addEventListener('click', function() {
             try {
                 // Tenta di aprire la chat usando l'API standard di Salesforce MIAW
                 embeddedservice_bootstrap.utilAPI.launchChat();
