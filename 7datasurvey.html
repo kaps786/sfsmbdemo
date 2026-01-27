@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sevendata - La tua opinione conta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & BASIC --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f8fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* --- COLORS --- */
+        :root {
+            --sd-blue: #00457c;
+            --sd-red: #e94e1b;
+            --sd-light-blue: #6cbaf5;
+            --gray-text: #666;
+        }
+
+        /* --- CARD CONTAINER --- */
+        .survey-card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- LOGO --- */
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #000;
+            display: inline-flex;
+            align-items: center;
+        }
+        .logo-text span { color: var(--sd-red); font-size: 28px; margin-right: 2px; }
+
+        /* --- QUESTION --- */
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--sd-blue);
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: var(--gray-text);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* --- FACES RATING --- */
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .rating-option {
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.6;
+        }
+
+        .rating-option i {
+            font-size: 45px;
+            margin-bottom: 8px;
+        }
+
+        .rating-option span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Hover & Active States */
+        .rating-option:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .rating-option.selected {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        /* Face Specific Colors */
+        .sad:hover, .sad.selected { color: #e74c3c; }       /* Red */
+        .neutral:hover, .neutral.selected { color: #f39c12; } /* Orange */
+        .happy:hover, .happy.selected { color: #27ae60; }     /* Green */
+
+        /* --- TEXT AREA (Hidden initially) --- */
+        .feedback-details {
+            display: none; /* Si mostra dopo il click */
+            animation: fadeIn 0.5s ease;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            resize: none;
+            height: 100px;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        textarea:focus { border-color: var(--sd-blue); }
+
+        /* --- BUTTON --- */
+        .btn-submit {
+            background-color: var(--sd-blue);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .btn-submit:hover { background-color: #003366; }
+
+        /* --- SUCCESS MESSAGE --- */
+        .success-message {
+            display: none;
+            padding: 20px;
+        }
+        .success-icon {
+            font-size: 60px;
+            color: #27ae60;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="survey-card" id="main-card">
+        <div class="logo-container">
+             <div class="logo-text"><span>7</span>Sevendata</div>
+        </div>
+
+        <div id="step-1">
+            <h1>Come valuti il nostro supporto?</h1>
+            <p class="subtitle">Aiutaci a migliorare la qualità del servizio (Data Quality anche nel Service!)</p>
+            
+            <div class="rating-container">
+                <div class="rating-option sad" onclick="selectRating(1, this)">
+                    <i class="far fa-face-frown"></i>
+                    <span>Poco Soddisfatto</span>
+                </div>
+                <div class="rating-option neutral" onclick="selectRating(2, this)">
+                    <i class="far fa-face-meh"></i>
+                    <span>Neutro</span>
+                </div>
+                <div class="rating-option happy" onclick="selectRating(3, this)">
+                    <i class="far fa-face-smile"></i>
+                    <span>Molto Soddisfatto</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-2" class="feedback-details">
+            <textarea placeholder="Raccontaci di più sulla tua esperienza (opzionale)..."></textarea>
+            <button class="btn-submit" onclick="submitSurvey()">Invia Feedback</button>
+        </div>
+
+        <div id="success-view" class="success-message">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1>Grazie!</h1>
+            <p class="subtitle">Il tuo feedback è stato registrato nel nostro CRM.<br>Apprezziamo il tuo contributo.</p>
+        </div>
+    </div>
+
+    <script>
+        // Logica semplice per la Demo
+        let selectedScore = 0;
+
+        function selectRating(score, element) {
+            selectedScore = score;
+            
+            // Rimuovi classe selected da tutti
+            document.querySelectorAll('.rating-option').forEach(el => el.classList.remove('selected'));
+            
+            // Aggiungi classe selected al cliccato
+            element.classList.add('selected');
+
+            // Mostra la text area se non è già visibile
+            const step2 = document.getElementById('step-2');
+            if (step2.style.display !== 'block') {
+                step2.style.display = 'block';
+            }
+        }
+
+        function submitSurvey() {
+            // Nascondi i passaggi precedenti
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'none';
+            document.querySelector('.logo-container').style.display = 'none'; // Nascondo logo per focus sul grazie
+
+            // Mostra messaggio di successo con animazione
+            const successDiv = document.getElementById('success-view');
+            successDiv.style.display = 'block';
+            successDiv.style.animation = 'fadeIn 0.5s ease';
+
+            // Simulazione invio dati (Log in console)
+            console.log("Survey Inviata. Score:", selectedScore);
+        }
+
+        // AUTO-SELECT DA URL (Tocco di classe per la demo)
+        // Se arrivi al link con ?score=3 (es. cliccando la faccina felice nella mail), si autoseleziona.
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const scoreParam = urlParams.get('score');
+            
+            if(scoreParam) {
+                const options = document.querySelectorAll('.rating-option');
+                if(scoreParam == 1) selectRating(1, options[0]);
+                if(scoreParam == 2) selectRating(2, options[1]);
+                if(scoreParam == 3) selectRating(3, options[2]);
+            }
+        }
+    </script>
+
+</body>
+</html>
