@@ -87,7 +87,8 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="tel"] {
+        input[type="tel"],
+        select {
             width: 100%;
             padding: 12px;
             border: 1px solid var(--border-grey);
@@ -99,7 +100,8 @@
 
         input[type="text"]:focus,
         input[type="email"]:focus,
-        input[type="tel"]:focus {
+        input[type="tel"]:focus,
+        select:focus {
             outline: none;
             border-color: var(--gold);
             box-shadow: 0 0 0 2px rgba(195, 165, 98, 0.2);
@@ -123,6 +125,7 @@
             height: 18px;
             accent-color: var(--gold);
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         .checkbox-group label {
@@ -131,6 +134,7 @@
             margin: 0;
             color: #555;
             line-height: 1.4;
+            cursor: pointer;
         }
 
         /* SUBMIT BUTTON */
@@ -146,11 +150,19 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, opacity 0.3s;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             background-color: var(--gold);
+        }
+
+        /* STATO DISABILITATO DEL BOTTONE (Offuscato) */
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            color: #888888;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         /* FOOTER */
@@ -231,46 +243,46 @@
                 </label>
             </div>
 
-            <!--
-            <button type="submit" name="submit" class="submit-btn">Registrati Ora</button>
-            -->
             <input type="submit" id="submit-btn" name="submit" class="submit-btn" value="Registrati Ora" disabled>
 
         </form>
-        </div>
+    </div>
 
     <footer>
         &copy; 2026 Archimede 202 Soc. Coop. - Tutti i diritti riservati.
     </footer>
+    
     <script>
-            (function() {
-                var form = document.getElementById('beltrami-form');
-                var privacyCheck = document.getElementById('privacy');
-                var submitBtn = document.getElementById('submit-btn');
-                var oidInput = form.querySelector('input[name="oid"]');
+        (function() {
+            var form = document.getElementById('beltrami-form');
+            // Modifica: Ora ascoltiamo il checkbox del marketing
+            var marketingCheck = document.getElementById('marketing');
+            var submitBtn = document.getElementById('submit-btn');
+            var oidInput = form.querySelector('input[name="oid"]');
 
-                function toggleSubmit() {
-                    submitBtn.disabled = !privacyCheck.checked;
+            function toggleSubmit() {
+                // Il bottone è disabilitato se il marketing NON è checkato
+                submitBtn.disabled = !marketingCheck.checked;
+            }
+
+            // Aggiungiamo l'event listener sul checkbox marketing
+            marketingCheck.addEventListener('change', toggleSubmit);
+            toggleSubmit(); // Esecuzione iniziale per settare lo stato corretto
+
+            form.addEventListener('submit', function(e) {
+                if (oidInput && oidInput.value.indexOf('REPLACE') !== -1) {
+                    e.preventDefault();
+                    return;
                 }
+                var oggetto = document.getElementById('oggetto').value;
+                document.getElementById('description').value = 'Cliente privato — ' + oggetto;
+            });
 
-                privacyCheck.addEventListener('change', toggleSubmit);
-                toggleSubmit();
-
-                form.addEventListener('submit', function(e) {
-                    if (oidInput && oidInput.value.indexOf('REPLACE') !== -1) {
-                        e.preventDefault();
-                        //alert('Configurare l’org ID Salesforce Beltrami nel form (Web-to-Lead) prima di pubblicare.');
-                        return;
-                    }
-                    var oggetto = document.getElementById('oggetto').value;
-                    document.getElementById('description').value = 'Cliente privato — ' + oggetto;
-                });
-
-                if (oidInput && oidInput.value.indexOf('REPLACE') === -1) {
-                    var devNote = document.getElementById('dev-note');
-                    if (devNote) devNote.style.display = 'none';
-                }
-            })();
-        </script>
+            if (oidInput && oidInput.value.indexOf('REPLACE') === -1) {
+                var devNote = document.getElementById('dev-note');
+                if (devNote) devNote.style.display = 'none';
+            }
+        })();
+    </script>
 </body>
 </html>
