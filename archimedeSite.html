@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beltrami Tabacchi | Archimede 202 Soc. Coop.</title>
+    <style>
+        /* Palette colori basata sul logo */
+        :root {
+            --gold: #c3a562; /* Colore oro ricavato dal logo */
+            --black: #000000;
+            --white: #ffffff;
+            --light-grey: #f4f4f4;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--white);
+            border-bottom: 3px solid var(--gold);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo-container img {
+            max-height: 80px; /* Regola in base alla dimensione desiderata */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            color: var(--gold);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: var(--light-grey);
+            flex-grow: 1;
+        }
+
+        .services h2 {
+            color: var(--black);
+            margin-bottom: 40px;
+            font-size: 2em;
+        }
+
+        .service-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-top: 4px solid var(--gold);
+            padding: 30px;
+            width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+
+        .service-card h3 {
+            color: var(--black);
+            margin-top: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            border-top: 5px solid var(--gold);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* FAKE CHAT BUTTON (Da rimuovere quando inserisci lo script di Salesforce) */
+        .fake-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--gold);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .fake-chat-btn:hover {
+            transform: scale(1.05);
+            background-color: #a88d52;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Beltrami 150 Anni - Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Servizi</a></li>
+                <li><a href="#">Chi Siamo</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Da 4 Generazioni al tuo servizio</h1>
+        <p>Ogni giorno, dal 1876. Molto più di una tabaccheria: il tuo punto di riferimento per servizi digitali, energia, telefonia e assistenza in provincia di Siracusa.</p>
+    </section>
+
+    <section class="services">
+        <h2>I Nostri Servizi</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Servizi Sisal</h3>
+                <p>SuperEnalotto, Eurojackpot, pagamenti bollettini e ricariche conti gioco.</p>
+            </div>
+            <div class="service-card">
+                <h3>Energia & Telefonia</h3>
+                <p>Attivazione fisso, mobile e consulenza per contratti luce e gas.</p>
+            </div>
+            <div class="service-card">
+                <h3>Assistenza H24</h3>
+                <p>Il nostro team è sempre a tua disposizione per risolvere ogni problema.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>ARCHIMEDE 202 SOCIETA' COOPERATIVA</strong> | Via Adige 46 - 96100 - Siracusa (SR)</p>
+        <p>P.IVA: 01864050891 | REA: 153801 | Punti Vendita: Floridia, Augusta, Siracusa, Avola</p>
+        <p>&copy; 2026 Tutti i diritti riservati.</p>
+    </footer>
+
+    <button class="fake-chat-btn" onclick="alert('In fase di Demo, qui si aprirà la finestra di chat integrata con Salesforce Service Cloud!')">
+        💬 Chatta con noi
+    </button>
+
+    </body>
+</html>
