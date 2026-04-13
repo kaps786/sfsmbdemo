@@ -177,7 +177,7 @@
             <p>Registrati per attivare i nostri servizi, ricevere assistenza rapida e rimanere aggiornato sulle novità (es. Nuovi iPhone, Promo Energia).</p>
         </div>
 
-        <form id="sicurant-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST">
+        <form id="beltrami-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST">
 
             <input type="hidden" name="oid" value="00DHu00000uSpSk">
             <input type="hidden" name="retURL" value="https://kaps786.github.io/sfsmbdemo/">
@@ -204,6 +204,17 @@
                 <input id="email" maxlength="80" name="email" type="email" placeholder="latua@email.com" />
             </div>
 
+            <div class="form-group">
+                <label for="oggetto">Oggetto della richiesta</label>
+                <select id="oggetto" required aria-label="Oggetto della richiesta">
+                    <option value="">— Seleziona un’opzione —</option>
+                    <option value="Informazioni sui prodotti">Informazioni sui prodotti</option>
+                    <option value="Richiesta preventivo">Richiesta preventivo</option>
+                    <option value="Assistenza post-vendita">Assistenza post-vendita</option>
+                    <option value="Altro">Altro</option>
+                </select>
+            </div>
+
             <div class="checkbox-group">
                 <input type="checkbox" id="privacy" name="Privacy_Custom_Field_ID" value="1" required>
                 <label for="privacy">
@@ -220,7 +231,10 @@
                 </label>
             </div>
 
+            <!--
             <button type="submit" name="submit" class="submit-btn">Registrati Ora</button>
+            -->
+            <input type="submit" id="submit-btn" name="submit" value="Registrati Ora" disabled>
 
         </form>
         </div>
@@ -228,6 +242,35 @@
     <footer>
         &copy; 2026 Archimede 202 Soc. Coop. - Tutti i diritti riservati.
     </footer>
+    <script>
+            (function() {
+                var form = document.getElementById('beltrami-form');
+                var privacyCheck = document.getElementById('privacy');
+                var submitBtn = document.getElementById('submit-btn');
+                var oidInput = form.querySelector('input[name="oid"]');
 
+                function toggleSubmit() {
+                    submitBtn.disabled = !privacyCheck.checked;
+                }
+
+                privacyCheck.addEventListener('change', toggleSubmit);
+                toggleSubmit();
+
+                form.addEventListener('submit', function(e) {
+                    if (oidInput && oidInput.value.indexOf('REPLACE') !== -1) {
+                        e.preventDefault();
+                        //alert('Configurare l’org ID Salesforce Beltrami nel form (Web-to-Lead) prima di pubblicare.');
+                        return;
+                    }
+                    var oggetto = document.getElementById('oggetto').value;
+                    document.getElementById('description').value = 'Cliente privato — ' + oggetto;
+                });
+
+                if (oidInput && oidInput.value.indexOf('REPLACE') === -1) {
+                    var devNote = document.getElementById('dev-note');
+                    if (devNote) devNote.style.display = 'none';
+                }
+            })();
+        </script>
 </body>
 </html>
