@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione | Beltrami Tabacchi</title>
+    <style>
+        /* Palette colori basata sul logo Beltrami 150 */
+        :root {
+            --gold: #c3a562; 
+            --black: #000000;
+            --white: #ffffff;
+            --light-grey: #f4f4f4;
+            --border-grey: #dddddd;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-grey); /* Sfondo chiaro per far risaltare il form */
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* HEADER MOBILE COMPACT */
+        header {
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 3px solid var(--gold);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo-container img {
+            max-height: 60px; /* Più piccolo per non rubare spazio su mobile */
+        }
+
+        /* FORM CONTAINER */
+        .form-wrapper {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 30px 25px;
+            border-radius: 8px;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            margin: 0 0 10px 0;
+            color: var(--black);
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .form-header p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* INPUT FIELDS */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: var(--black);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-grey);
+            border-radius: 5px;
+            font-size: 16px; /* 16px previene lo zoom automatico su iOS */
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(195, 165, 98, 0.2);
+        }
+
+        /* CHECKBOXES (Privacy & Marketing) */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background-color: #fafafa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-grey);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            font-size: 0.85em;
+            margin: 0;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            width: 100%;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--gold);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Beltrami 150 Anni - Logo">
+        </div>
+    </header>
+
+    <div class="form-wrapper">
+        <div class="form-header">
+            <h2>Benvenuto</h2>
+            <p>Registrati per attivare i nostri servizi, ricevere assistenza rapida e rimanere aggiornato sulle novità (es. Nuovi iPhone, Promo Energia).</p>
+        </div>
+
+        <form id="sicurant-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST">
+
+            <input type="hidden" name="oid" value="00DHu00000uSpSk">
+            <input type="hidden" name="retURL" value="https://kaps786.github.io/sfsmbdemo/">
+            <input type="hidden" name="lead_source" value="Sito Web">
+            <input type="hidden" name="description" id="description" value="">
+
+            <div class="form-group">
+                <label for="first_name">Nome *</label>
+                <input id="first_name" maxlength="40" name="first_name" type="text" required placeholder="Inserisci il tuo nome" />
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Cognome *</label>
+                <input id="last_name" maxlength="80" name="last_name" type="text" required placeholder="Inserisci il tuo cognome" />
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Cellulare (per comunicazioni WhatsApp) *</label>
+                <input id="mobile" maxlength="40" name="mobile" type="tel" required placeholder="+39 3XX XXXXXXX" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Indirizzo Email</label>
+                <input id="email" maxlength="80" name="email" type="email" placeholder="latua@email.com" />
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="privacy" name="Privacy_Custom_Field_ID" value="1" required>
+                <label for="privacy">
+                    <strong>Privacy Policy *</strong><br>
+                    Acconsento al trattamento dei miei dati personali per la gestione della mia anagrafica e l'erogazione dei servizi, in conformità alla normativa GDPR vigente.
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="marketing" name="Marketing_Custom_Field_ID" value="1">
+                <label for="marketing">
+                    <strong>Consenso Marketing</strong><br>
+                    Acconsento a ricevere comunicazioni commerciali, aggiornamenti su nuovi prodotti e promozioni (tramite WhatsApp, SMS o Email) da parte di Archimede 202 Soc. Coop.
+                </label>
+            </div>
+
+            <button type="submit" name="submit" class="submit-btn">Registrati Ora</button>
+
+        </form>
+        </div>
+
+    <footer>
+        &copy; 2026 Archimede 202 Soc. Coop. - Tutti i diritti riservati.
+    </footer>
+
+</body>
+</html>
