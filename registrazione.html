@@ -255,17 +255,17 @@
     <script>
         (function() {
             var form = document.getElementById('beltrami-form');
-            // Modifica: Ora ascoltiamo il checkbox del marketing
-            var marketingCheck = document.getElementById('marketing');
+            // Modifica: Ora ascoltiamo il checkbox del privacy
+            var marketingCheck = document.getElementById('privacy');
             var submitBtn = document.getElementById('submit-btn');
             var oidInput = form.querySelector('input[name="oid"]');
 
             function toggleSubmit() {
-                // Il bottone è disabilitato se il marketing NON è checkato
+                // Il bottone è disabilitato se il privacy NON è checkato
                 submitBtn.disabled = !marketingCheck.checked;
             }
 
-            // Aggiungiamo l'event listener sul checkbox marketing
+            // Aggiungiamo l'event listener sul checkbox privacy
             marketingCheck.addEventListener('change', toggleSubmit);
             toggleSubmit(); // Esecuzione iniziale per settare lo stato corretto
 
