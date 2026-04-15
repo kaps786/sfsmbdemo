@@ -1,288 +1,219 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione | Beltrami Tabacchi</title>
-    <style>
-        /* Palette colori basata sul logo Beltrami 150 */
-        :root {
-            --gold: #c3a562; 
-            --black: #000000;
-            --white: #ffffff;
-            --light-grey: #f4f4f4;
-            --border-grey: #dddddd;
-            --text-dark: #333333;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-grey); /* Sfondo chiaro per far risaltare il form */
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* HEADER MOBILE COMPACT */
-        header {
-            width: 100%;
-            background-color: var(--white);
-            border-bottom: 3px solid var(--gold);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .logo-container img {
-            max-height: 60px; /* Più piccolo per non rubare spazio su mobile */
-        }
-
-        /* FORM CONTAINER */
-        .form-wrapper {
-            background-color: var(--white);
-            width: 90%;
-            max-width: 450px;
-            margin: 30px auto;
-            padding: 30px 25px;
-            border-radius: 8px;
-            border-top: 5px solid var(--gold);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .form-header h2 {
-            margin: 0 0 10px 0;
-            color: var(--black);
-            font-size: 1.5em;
-            text-transform: uppercase;
-        }
-
-        .form-header p {
-            margin: 0;
-            font-size: 0.95em;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        /* INPUT FIELDS */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9em;
-            color: var(--black);
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-grey);
-            border-radius: 5px;
-            font-size: 16px; /* 16px previene lo zoom automatico su iOS */
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(195, 165, 98, 0.2);
-        }
-
-        /* CHECKBOXES (Privacy & Marketing) */
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            background-color: #fafafa;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid var(--border-grey);
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            margin-top: 3px;
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--gold);
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .checkbox-group label {
-            font-weight: normal;
-            font-size: 0.85em;
-            margin: 0;
-            color: #555;
-            line-height: 1.4;
-            cursor: pointer;
-        }
-
-        /* SUBMIT BUTTON */
-        .submit-btn {
-            width: 100%;
-            background-color: var(--black);
-            color: var(--white);
-            border: none;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s, opacity 0.3s;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            background-color: var(--gold);
-        }
-
-        /* STATO DISABILITATO DEL BOTTONE (Offuscato) */
-        .submit-btn:disabled {
-            background-color: #cccccc;
-            color: #888888;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            text-align: center;
-            font-size: 0.8em;
-            color: #777;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Beltrami 150 Anni - Logo">
-        </div>
-    </header>
-
-    <div class="form-wrapper">
-        <div class="form-header">
-            <h2>Benvenuto</h2>
-            <p>Registrati per attivare i nostri servizi, ricevere assistenza rapida e rimanere aggiornato sulle novità (es. Nuovi iPhone, Promo Energia).</p>
-        </div>
-
-        <form id="beltrami-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST">
-
-            <input type="hidden" name="oid" value="00DHu00000uSpSk">
-            <input type="hidden" name="retURL" value="https://kaps786.github.io/sfsmbdemo/">
-            <input type="hidden" name="lead_source" value="Sito Web">
-            <input type="hidden" name="description" id="description" value="">
-
-            <div class="form-group">
-                <label for="first_name">Nome *</label>
-                <input id="first_name" maxlength="40" name="first_name" type="text" required placeholder="Inserisci il tuo nome" />
-            </div>
-
-            <div class="form-group">
-                <label for="last_name">Cognome *</label>
-                <input id="last_name" maxlength="80" name="last_name" type="text" required placeholder="Inserisci il tuo cognome" />
-            </div>
-
-            <div class="form-group">
-                <label for="mobile">Cellulare (per comunicazioni WhatsApp) *</label>
-                <input id="mobile" maxlength="40" name="mobile" type="tel" required placeholder="+39 3XX XXXXXXX" />
-            </div>
-
-            <div class="form-group">
-                <label for="email">Indirizzo Email</label>
-                <input id="email" maxlength="80" name="email" type="email" placeholder="latua@email.com" />
-            </div>
-
-            <div class="form-group">
-                <label for="oggetto">Oggetto della registrazione</label>
-                <select id="oggetto" required aria-label="Oggetto della richiesta">
-                    <option value="">— Seleziona un’opzione —</option>
-                    <option value="Informazioni sui prodotti">Informazioni sui prodotti</option>
-                    <option value="Richiesta preventivo">Richiesta preventivo</option>
-                    <option value="Assistenza post-vendita">Assistenza post-vendita</option>
-                    <option value="Altro">Altro</option>
-                </select>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="privacy" name="Privacy_Custom_Field_ID" value="1" required>
-                <label for="privacy">
-                    <strong>Privacy Policy *</strong><br>
-                    Acconsento al trattamento dei miei dati personali per la gestione della mia anagrafica e l'erogazione dei servizi, in conformità alla normativa GDPR vigente.
-                </label>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="marketing" name="Marketing_Custom_Field_ID" value="1">
-                <label for="marketing">
-                    <strong>Consenso Marketing</strong><br>
-                    Acconsento a ricevere comunicazioni commerciali, aggiornamenti su nuovi prodotti e promozioni (tramite WhatsApp, SMS o Email) da parte di Archimede 202 Soc. Coop.
-                </label>
-            </div>
-
-            <input type="submit" id="submit-btn" name="submit" class="submit-btn" value="Registrati Ora" disabled>
-
-        </form>
-    </div>
-
-    <footer>
-        &copy; 2026 Archimede 202 Soc. Coop. - Tutti i diritti riservati.
-    </footer>
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Phonesia | Contatti e Registrazione</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+<body class="antialiased">
+    <main class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans">
+        <div class="mx-auto w-full max-w-6xl px-5 py-8 md:px-8 md:py-12">
+            
+            <section class="mb-8 overflow-hidden rounded-[36px] border border-slate-200 bg-white shadow-[0_10px_40px_rgba(15,23,42,0.06)]">
+                <div class="relative px-6 py-10 md:px-10 md:py-14">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.10),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.05),transparent_30%)]"></div>
+                    <div class="relative">
+                        <div class="mb-6 flex justify-center"><img src="https://crm-clean.vercel.app/phonesia/Logo_Phonesia-1.png" alt="PHONESIA" class="h-auto w-[230px] md:w-[300px]"/></div>
+                        <div class="mx-auto mb-6 max-w-max rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-orange-700">Assistenza reale • Negozi reali • Persone reali</div>
+                        <div class="mb-8 overflow-hidden rounded-[28px] border border-slate-100 bg-slate-50 shadow-sm"><img src="https://crm-clean.vercel.app/phonesia/biglietto/gruppo-phonesia.png" alt="Team PHONESIA" class="h-auto w-full object-cover"/></div>
+                        
+                        <div class="mx-auto max-w-3xl text-center">
+                            <h1 class="mb-5 text-3xl font-black tracking-tight text-slate-950 md:text-5xl">Noi siamo PHONESIA</h1>
+                            <div class="space-y-5 text-base leading-relaxed text-slate-700 md:text-lg">
+                                <p class="text-lg font-semibold text-slate-950 md:text-xl">Siamo un negozio su strada.</p>
+                                <p>Ci trovi qui oggi, domani e nel tempo.</p>
+                                <p>I nostri numeri sono a tua disposizione <strong>sia telefonicamente che su WhatsApp</strong>, per aiutarti, consigliarti e seguirti in tutto ciò che trattiamo.</p>
+                                <p>Non siamo un call center.<br/>Non siamo un punto vendita temporaneo.<br/>Non siamo persone che oggi ci sono e domani spariscono.</p>
+                                <p>Siamo consulenti reali,<br/>con un negozio reale<br/>e un rapporto umano che continua anche dopo l’acquisto.</p>
+                                <p>Quando hai bisogno, sai dove trovarci.<br/>E sai chi risponde.</p>
+                                <p class="pt-1 text-lg font-bold text-slate-950 md:text-xl">Noi siamo PHONESIA.</p>
+                            </div>
+                            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                                <a href="#responsabile" class="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Parla con il responsabile</a>
+                                <a href="#negozi" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Vai ai negozi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsabile" class="mb-8 rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.06)] md:p-8">
+                <div class="mb-5">
+                    <div class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Responsabile generale</div>
+                    <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-3xl">Responsabile PHONESIA (tutti i negozi)</h2>
+                </div>
+                <div class="rounded-[24px] border border-orange-100 bg-gradient-to-r from-orange-50 to-white p-5 md:p-6">
+                    <p class="text-xl font-bold text-slate-950">Marco Magnano</p>
+                    <p class="mt-1 text-sm text-slate-600">Punto di riferimento generale per tutta la rete PHONESIA</p>
+                    <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+                        <a href="tel:+393917000017" class="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">📞 Chiama +39 391 700 0017</a>
+                        <a href="https://wa.me/393917000017" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700">💬 Scrivi su WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="negozi" class="mb-6">
+                <div class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Rete PHONESIA</div>
+                <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">Contatti negozi</h2>
+                <p class="mt-2 max-w-2xl text-sm text-slate-600 md:text-base">Contatta direttamente il punto vendita o la persona giusta per ricevere assistenza, supporto e informazioni sui servizi PHONESIA.</p>
+            </section>
+
+            <section class="grid gap-6 lg:grid-cols-2">
+                <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-7 ">
+                    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div><h3 class="text-2xl font-black tracking-tight text-slate-950">PHONESIA FLORIDIA</h3><p class="mt-2 text-sm text-slate-600">Corso Vittorio Emanuele 735/737 – Floridia</p></div>
+                        <a href="#" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">📍 Apri su Maps</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Alba</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393349474319" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 334 947 4319</a><a href="https://wa.me/393349474319" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Rosy</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393282607113" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 328 260 7113</a><a href="https://wa.me/393282607113" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                    </div>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-7 ">
+                    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div><h3 class="text-2xl font-black tracking-tight text-slate-950">PHONESIA AUGUSTA</h3><p class="mt-2 text-sm text-slate-600">Viale Italia 195/197 – Augusta</p></div>
+                        <a href="#" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">📍 Apri su Maps</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Federico</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393202927455" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 320 292 7455</a><a href="https://wa.me/393202927455" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Damiano</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393761162326" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 376 116 2326</a><a href="https://wa.me/393761162326" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                    </div>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-7 ">
+                    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div><h3 class="text-2xl font-black tracking-tight text-slate-950">PHONESIA SIRACUSA</h3><p class="mt-2 text-sm text-slate-600">Corso Gelone 41 – Siracusa</p></div>
+                        <a href="#" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">📍 Apri su Maps</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Andrea</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393313137775" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 331 313 7775</a><a href="https://wa.me/393313137775" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                    </div>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-7 ">
+                    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div><h3 class="text-2xl font-black tracking-tight text-slate-950">PHONESIA AVOLA</h3><p class="mt-2 text-sm text-slate-600">Corso Vittorio Emanuele 281/283 – Avola</p></div>
+                        <a href="#" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">📍 Apri su Maps</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Gaetano</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393917510115" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 391 751 0115</a><a href="https://wa.me/393917510115" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                    </div>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-7 lg:col-span-2">
+                    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div><h3 class="text-2xl font-black tracking-tight text-slate-950">PHONESIA TABACCHI BELTRAMI</h3><p class="mt-2 text-sm text-slate-600">Via Archimede 202 – Siracusa</p></div>
+                        <a href="#" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">📍 Apri su Maps</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="max-w-md">
+                            <div class="rounded-[24px] border border-slate-100 bg-slate-50 p-4 md:p-5"><div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-lg font-bold text-slate-950">Achille</p><p class="text-sm text-slate-500">Consulente PHONESIA</p></div><div class="flex flex-col gap-3 sm:flex-row"><a href="tel:+393473214561" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">📞 +39 347 321 4561</a><a href="https://wa.me/393473214561" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp</a></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-8 rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.06)] md:p-8">
+                <div class="mx-auto max-w-2xl">
+                    <div class="text-center mb-6">
+                        <div class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Entra nel Club</div>
+                        <h2 class="text-2xl font-black tracking-tight text-slate-950 md:text-3xl">Registrazione Rapida</h2>
+                        <p class="mt-2 text-sm text-slate-600 md:text-base">Lascia i tuoi dati per ricevere assistenza, promozioni esclusive su smartphone e offerte Fibra/Luce.</p>
+                    </div>
+
+                    <form id="beltrami-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST" class="space-y-4 text-left">
+                        
+                        <input type="hidden" name="oid" value="00DHu00000uSpSk">
+                        <!--<input type="hidden" name="retURL" value="https://kaps786.github.io/sfsmbdemo/">-->
+                        <input type="hidden" name="retURL" value="https://phonesia.it/">
+                        <input type="hidden" name="lead_source" value="Sito Web Phonesia">
+                        <input type="hidden" name="description" id="description" value="">
+
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div>
+                                <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Nome *</label>
+                                <input name="first_name" type="text" required placeholder="Es. Mario" class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Cognome *</label>
+                                <input name="last_name" type="text" required placeholder="Es. Rossi" class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div>
+                                <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Cellulare *</label>
+                                <input name="mobile" type="tel" required placeholder="+39 3XX XXXXXXX" class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Email</label>
+                                <input name="email" type="email" placeholder="mario.rossi@email.it" class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Servizio di interesse</label>
+                            <select id="oggetto" required class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
+                                <option value="">— Cosa stai cercando? —</option>
+                                <option value="Riparazione">Riparazione Smartphone/Tablet</option>
+                                <option value="SIM">Nuova SIM (TIM, Vodafone, WindTre, Kena)</option>
+                                <option value="Energia">Attivazione Fibra Ottica / Luce & Gas</option>
+                                <option value="Assistenza">Assistenza e Pagamenti Sisal</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-4 flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
+                            <input type="checkbox" id="privacy" required class="mt-0.5 h-5 w-5 rounded border-slate-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
+                            <label for="privacy" class="text-sm text-slate-600 cursor-pointer"><strong>Privacy Policy *</strong><br>Accetto il trattamento dei dati personali secondo la normativa GDPR.</label>
+                        </div>
+
+                        <div class="flex items-start gap-3 rounded-xl border border-orange-100 bg-orange-50 p-4">
+                            <input type="checkbox" id="marketing" name="Marketing_Opt_In__c" value="1" class="mt-0.5 h-5 w-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
+                            <label for="marketing" class="text-sm text-slate-800 cursor-pointer"><strong>Consenso Marketing</strong><br>Voglio ricevere promozioni esclusive via WhatsApp su riparazioni e tariffe agevolate.</label>
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit" id="submit-btn" disabled class="w-full rounded-2xl bg-slate-950 px-5 py-4 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500">
+                                Invia Richiesta
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+            <section class="mt-8 rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(15,23,42,0.05)] md:p-8">
+                <div class="mx-auto max-w-3xl text-center">
+                    <div class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Sempre a disposizione</div>
+                    <h2 class="text-2xl font-black tracking-tight text-slate-950 md:text-3xl">Quando hai bisogno, PHONESIA c’è</h2>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-600 md:text-base">Per assistenza, informazioni o consigli sui servizi, puoi contattarci direttamente dal negozio più vicino oppure scrivere al responsabile generale della rete PHONESIA.</p>
+                    <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+                        <a href="tel:+393917000017" class="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">📞 Chiama Marco</a>
+                        <a href="https://wa.me/393917000017" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700">💬 WhatsApp Marco</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
     <script>
-        (function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('beltrami-form');
-            // Modifica: Ora ascoltiamo il checkbox del privacy
-            var marketingCheck = document.getElementById('privacy');
+            var privacyCheck = document.getElementById('privacy');
             var submitBtn = document.getElementById('submit-btn');
-            var oidInput = form.querySelector('input[name="oid"]');
 
             function toggleSubmit() {
-                // Il bottone è disabilitato se il privacy NON è checkato
-                submitBtn.disabled = !marketingCheck.checked;
+                submitBtn.disabled = !privacyCheck.checked;
             }
 
-            // Aggiungiamo l'event listener sul checkbox privacy
-            marketingCheck.addEventListener('change', toggleSubmit);
-            toggleSubmit(); // Esecuzione iniziale per settare lo stato corretto
+            privacyCheck.addEventListener('change', toggleSubmit);
+            toggleSubmit(); 
 
             form.addEventListener('submit', function(e) {
-                if (oidInput && oidInput.value.indexOf('REPLACE') !== -1) {
-                    e.preventDefault();
-                    return;
-                }
                 var oggetto = document.getElementById('oggetto').value;
-                document.getElementById('description').value = 'Cliente privato — ' + oggetto;
+                document.getElementById('description').value = 'Lead Phonesia Sito Vercel — Interesse: ' + oggetto;
             });
-
-            if (oidInput && oidInput.value.indexOf('REPLACE') === -1) {
-                var devNote = document.getElementById('dev-note');
-                if (devNote) devNote.style.display = 'none';
-            }
-        })();
+        });
     </script>
 </body>
 </html>
