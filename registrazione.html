@@ -155,25 +155,26 @@
                             <label class="mb-1 block text-sm font-bold text-slate-700 uppercase">Servizio di interesse</label>
                             <select id="oggetto" required class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200 transition">
                                 <option value="">— Cosa stai cercando? —</option>
-                                <option value="Riparazione">Riparazione Smartphone/Tablet</option>
-                                <option value="SIM">Nuova SIM (TIM, Vodafone, WindTre, Kena)</option>
-                                <option value="Fibra">Attivazione Fibra Ottica</option>
-                                <option value="Energia">Attivazione Luce</option>
-                                <option value="Gas">Attivazione Gas</option>
-                                <option value="EnergiaGas">Attivazione Luce & Gas</option>
-                                <option value="Auto">Attivazione Assicurazione Auto</option>
-                                <option value="Moto">Attivazione Assicurazione Moto</option>
-                                <option value="Assistenza">Assistenza e Pagamenti Sisal</option>
+                                <option value="Riparazione Smartphone/Tablet">Riparazione Smartphone/Tablet</option>
+                                <option value="Nuova SIM (TIM, Vodafone, WindTre, Kena)">Nuova SIM (TIM, Vodafone, WindTre, Kena)</option>
+                                <option value="Attivazione Fibra Ottica">Attivazione Fibra Ottica</option>
+                                <option value="Attivazione Luce">Attivazione Luce</option>
+                                <option value="Attivazione Gas">Attivazione Gas</option>
+                                <option value="Attivazione Luce &amp; Gas">Attivazione Luce &amp; Gas</option>
+                                <option value="Attivazione Assicurazione Auto">Attivazione Assicurazione Auto</option>
+                                <option value="Attivazione Assicurazione Moto">Attivazione Assicurazione Moto</option>
+                                <option value="Assistenza e Pagamenti Sisal">Assistenza e Pagamenti Sisal</option>
+                                <option value="Altro">Altro</option>
                             </select>
                         </div>
 
                         <div class="mt-4 flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                            <input type="checkbox" id="privacy" required class="mt-0.5 h-5 w-5 rounded border-slate-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
+                            <input id="00NHu00002LCGUA" name="00NHu00002LCGUA" type="checkbox" value="1" required class="mt-0.5 h-5 w-5 rounded border-slate-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
                             <label for="privacy" class="text-sm text-slate-600 cursor-pointer"><strong>Privacy Policy *</strong><br>Accetto il trattamento dei dati personali secondo la normativa GDPR.</label>
                         </div>
 
                         <div class="flex items-start gap-3 rounded-xl border border-orange-100 bg-orange-50 p-4">
-                            <input type="checkbox" id="marketing" name="Marketing_Opt_In__c" value="1" class="mt-0.5 h-5 w-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
+                            <input id="00NHu00002LCGU0" name="00NHu00002LCGU0" type="checkbox" value="1" class="mt-0.5 h-5 w-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500 cursor-pointer">
                             <label for="marketing" class="text-sm text-slate-800 cursor-pointer"><strong>Consenso Marketing</strong><br>Voglio ricevere promozioni esclusive via WhatsApp su riparazioni e tariffe agevolate.</label>
                         </div>
 
@@ -204,7 +205,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var form = document.getElementById('beltrami-form');
-            var privacyCheck = document.getElementById('privacy');
+            var privacyCheck = document.getElementById('00NHu00002LCGUA');
             var submitBtn = document.getElementById('submit-btn');
 
             function toggleSubmit() {
