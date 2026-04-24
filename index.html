@@ -3,213 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beltrami Tabacchi | Archimede 202 Soc. Coop.</title>
-    <style>
-        /* Palette colori basata sul logo */
+    <title>Sailornet - Demo Agentforce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<style>
+        /* --- VARIABILI COLORI SAILORNET --- */
         :root {
-            --gold: #c3a562; /* Colore oro ricavato dal logo */
-            --black: #000000;
-            --white: #ffffff;
-            --light-grey: #f4f4f4;
-            --text-dark: #333333;
+            --sailornet-blue: #1A274F; /* Blu nautico profondo */
+            --sailornet-light-blue: #00509e; /* Blu più chiaro per hover */
+            --sailornet-red: #F3DB4D; /* Rosso per emergenze/preventivo */
+            --sailornet-top: #1A274F; /* Blu scurissimo della top bar */
+            --text-light: #FFFFFF;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            color: var(--text-dark);
-            background-color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            background-color: #f4f7f6;
         }
 
-        /* HEADER */
-        header {
-            background-color: var(--white);
-            border-bottom: 3px solid var(--gold);
-            padding: 15px 50px;
+        /* --- TOP BAR PICCOLA --- */
+        .top-bar {
+            background-color: var(--sailornet-top);
+            color: var(--text-light);
+            font-size: 11px;
+            padding: 8px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .top-bar .left-info { display: flex; gap: 20px; }
+        .top-bar .right-info { display: flex; gap: 20px; }
+        .top-bar div { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .top-bar .highlight { color: #F3DB4D; font-weight: bold; }
+
+        /* --- HEADER E NAVIGAZIONE --- */
+        header {
+            background-color: #1A274F;
+            height: 115px;
+            display: flex;
+            align-items: stretch;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
 
-        .logo-container img {
-            max-height: 80px; /* Regola in base alla dimensione desiderata */
+        .logo-container {
+            background-image: url('logoR.png');
+            width: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            background-color: var(--sailornet-blue);
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background-repeat: no-repeat;
+        }
+        
+        /* Se hai un logo reale, sostituisci il testo con:
+        .logo-container img { max-width: 80%; height: auto; } */
+
+        nav {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         nav ul {
             list-style: none;
-            display: flex;
-            gap: 30px;
             margin: 0;
             padding: 0;
+            display: flex;
+            gap: 25px;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--black);
+        nav ul li {
+            color: #FFFFFF;
+            font-size: 12px;
             font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
             text-transform: uppercase;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
-
-        nav a:hover {
-            color: var(--gold);
+        
+        nav ul li:hover { color: var(--sailornet-red); }
+        nav ul li i { margin-left: 4px; font-size: 10px; }
+        
+        .btn-preventivo {
+            background-color: #1A274F;
+            color: #F3DB4D !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: 1px solid #F3DB4D;
         }
+        .btn-preventivo:hover { background-color: #F3DB4D; color: #1A274F !important;}
+        
 
-        /* HERO SECTION */
+        /* --- HERO SECTION CON IMMAGINE CARICATA --- */
         .hero {
-            background-color: var(--black);
-            color: var(--white);
+            flex-grow: 1;
+            /* Utilizzo dell'immagine caricata con un overlay per far risaltare il testo */
+            background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 51, 102, 0.7)), url('sfondo2.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 80px 20px;
+            padding: 0 20px;
+            position: relative;
+            min-height: 500px;
         }
 
         .hero h1 {
-            color: var(--gold);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+            margin: 0 0 15px 0;
         }
 
         .hero p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            line-height: 1.6;
+            color: white;
+            font-size: 18px;
+            max-width: 700px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin: 0 0 30px 0;
         }
 
-        /* SERVICES SECTION */
-        .services {
-            padding: 60px 20px;
-            text-align: center;
-            background-color: var(--light-grey);
-            flex-grow: 1;
-        }
-
-        .services h2 {
-            color: var(--black);
-            margin-bottom: 40px;
-            font-size: 2em;
-        }
-
-        .service-grid {
+        /* --- BOTTOM BAR BLU --- */
+        .bottom-bar {
+            background-color: var(--sailornet-blue);
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
+            justify-content: space-around;
+            align-items: center;
+            padding: 25px 0;
+            color: white;
         }
 
-        .service-card {
-            background: var(--white);
-            border-top: 4px solid var(--gold);
-            padding: 30px;
-            width: 250px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 5px;
-        }
-
-        .service-card h3 {
-            color: var(--black);
-            margin-top: 0;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: var(--black);
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            border-top: 5px solid var(--gold);
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        /* FAKE CHAT BUTTON (Da rimuovere quando inserisci lo script di Salesforce) */
-        .fake-chat-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--gold);
-            color: var(--white);
-            border: none;
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        .bottom-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
             cursor: pointer;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .bottom-item:hover { transform: translateY(-5px); }
+        .bottom-item i { font-size: 28px; color: #F3DB4D; }
+        .bottom-item span { font-size: 14px; font-weight: 600; line-height: 1.4; text-transform: uppercase;}
+
+        /* --- BOTTONI FLOTTANTI (AGENTFORCE) --- */
+        .floating-contact-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             z-index: 1000;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            color: #FFF;
+            font-size: 30px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            justify-content: center;
+            transition: transform 0.2s ease, background-color 0.2s;
         }
 
-        .fake-chat-btn:hover {
-            transform: scale(1.05);
-            background-color: #a88d52;
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .agent-btn {
+            background-color: cadetblue;
+        }
+
+        .agent-btn:hover {
+            background-color: var(--sailornet-light-blue);
+        }
+
+        /* Nascondi il widget standard di Salesforce per usare il nostro bottone custom */
+        #embeddedMessagingIconContainer, 
+        .embeddedMessagingIconContainer {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
+    <div class="top-bar">
+        <div class="left-info">
+        </div>
+        <div class="right-info">
+            <div><i class="fa-solid fa-phone"></i> Centrale Operativa: <span class="highlight">800 123 456</span></div>
+            <div><i class="fa-solid fa-ship"></i> Soccorso H24</div>
+            <div><i class="fa-solid fa-user"></i> Area Clienti</div>
+            <div><i class="fa-solid fa-globe"></i> IT <i class="fa-solid fa-chevron-down" style="font-size: 9px;"></i></div>
+        </div>
+    </div>
+
     <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="Beltrami 150 Anni - Logo">
+        <div class="logo-container">            
         </div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Servizi</a></li>
-                <li><a href="#">Chi Siamo</a></li>
-                <li><a href="#">Contatti</a></li>
+                <li>HOME</li>
+                <li>CHI SIAMO</li>
+                <li>ABBONAMENTI <i class="fa-solid fa-chevron-down"></i></li>
+                <li>I NOSTRI SERVIZI <i class="fa-solid fa-chevron-down"></i></li>
+                <li>SAILORNET POINTS</li>
+                <li>CONTATTI</li>
+                <li class="btn-preventivo">ACQUISTA IL TUO ABBONAMENTO</li>
+                <li class="btn-preventivo">PREVENTIVO</li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Da 4 Generazioni al tuo servizio</h1>
-        <p>Ogni giorno, dal 1876. Molto più di una tabaccheria: il tuo punto di riferimento per servizi digitali, energia, telefonia e assistenza in provincia di Siracusa.</p>
+        <h1>La tua sicurezza in mare</h1>
+        <p>Assistenza nautica H24 nel Mediterraneo. Dai piccoli imprevisti al recupero dell'imbarcazione, la centrale operativa di Sailornet è sempre al tuo fianco.</p>
     </section>
 
-    <section class="services">
-        <h2>I Nostri Servizi</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <h3>Servizi Sisal</h3>
-                <p>SuperEnalotto, Eurojackpot, pagamenti bollettini e ricariche conti gioco.</p>
-            </div>
-            <div class="service-card">
-                <h3>Energia & Telefonia</h3>
-                <p>Attivazione fisso, mobile e consulenza per contratti luce e gas.</p>
-            </div>
-            <div class="service-card">
-                <h3>Assistenza H24</h3>
-                <p>Il nostro team è sempre a tua disposizione per risolvere ogni problema.</p>
-            </div>
+    <div class="bottom-bar">
+        <div class="bottom-item">
+            <i class="fa-solid fa-life-ring"></i>
+            <span>Porto Sicuro<br><small style="font-size: 10px; font-weight: normal; color: #ccc;">Entro 6 Miglia</small></span>
         </div>
-    </section>
+        <div class="bottom-item">
+            <i class="fa-solid fa-anchor"></i>
+            <span>Sottocosta<br><small style="font-size: 10px; font-weight: normal; color: #ccc;">Entro 12 Miglia</small></span>
+        </div>
+        <div class="bottom-item">
+            <i class="fa-solid fa-water"></i>
+            <span>Mare Aperto<br><small style="font-size: 10px; font-weight: normal; color: #ccc;">Entro 20 Miglia</small></span>
+        </div>
+    </div>
 
-    <footer>
-        <p><strong>ARCHIMEDE 202 SOCIETA' COOPERATIVA</strong> | Via Adige 46 - 96100 - Siracusa (SR)</p>
-        <p>P.IVA: 01864050891 | REA: 153801 | Punti Vendita: Floridia, Augusta, Siracusa, Avola</p>
-        <p>&copy; 2026 Tutti i diritti riservati.</p>
-    </footer>
+    <div class="floating-contact-container">
+        <button id="agentforce-trigger" class="float-btn agent-btn" title="Chatta con il nostro Assistente Virtuale">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
 
-    <button class="fake-chat-btn" onclick="alert('In fase di Demo, qui si aprirà la finestra di chat integrata con Salesforce Service Cloud!')">
-        💬 Chatta con noi
-    </button>
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
+                embeddedservice_bootstrap.init(
+                    '00DHu00000uSpSk',
+                    'ServiceAgentChat',
+                    'https://at1766405648944.my.site.com/ESWServiceAgentChat1777027888880',
+                    {
+                        scrt2URL: 'https://at1766405648944.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWServiceAgentChat1777027888880/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+    <script>
+        // Logica per agganciare il bottone custom all'API della chat
+        document.getElementById('agentforce-trigger').addEventListener('click', function() {
+            try {
+                // Tenta di aprire la chat usando l'API standard di Salesforce MIAW
+                embeddedservice_bootstrap.utilAPI.launchChat();
+            } catch (e) {
+                console.log("Chat API non ancora pronta o errore: " + e);
+                // Fallback: simula il click sul bottone nascosto (se esiste)
+                const sfButton = document.querySelector('.embeddedServiceHelpButton .uiButton');
+                if(sfButton) sfButton.click();
+            }
+        });
+    </script>
     </body>
 </html>
