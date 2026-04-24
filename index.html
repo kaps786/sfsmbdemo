@@ -288,17 +288,38 @@
     <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWServiceAgentChat1777027888880/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     <script>
-        // Logica per agganciare il bottone custom all'API della chat
-        document.getElementById('agentforce-trigger').addEventListener('click', function() {
+        const agentBtn = document.getElementById('agentforce-trigger');
+
+        // 1. Logica di apertura al click
+        agentBtn.addEventListener('click', function() {
+            // Nascondiamo il bottone immediatamente al click
+            agentBtn.style.display = 'none';
+
             try {
-                // Tenta di aprire la chat usando l'API standard di Salesforce MIAW
+                // Tenta di aprire la chat usando l'API standard
                 embeddedservice_bootstrap.utilAPI.launchChat();
             } catch (e) {
                 console.log("Chat API non ancora pronta o errore: " + e);
-                // Fallback: simula il click sul bottone nascosto (se esiste)
+                // Fallback
                 const sfButton = document.querySelector('.embeddedServiceHelpButton .uiButton');
                 if(sfButton) sfButton.click();
             }
+        });
+
+        // 2. Ascolta l'evento di chiusura/minimizzazione di Salesforce
+        // Quando l'utente chiude la chat, facciamo riapparire il robottino
+        window.addEventListener("onEmbeddedMessagingWindowMinimized", function() {
+            agentBtn.style.display = 'flex';
+        });
+
+        // (Sicurezza extra) Nel caso l'utente chiuda la chat definitivamente
+        window.addEventListener("onEmbeddedMessagingWindowClosed", function() {
+            agentBtn.style.display = 'flex';
+        });
+
+        // (Sicurezza extra) Se la chat viene aperta in altri modi, nascondi il bottone
+        window.addEventListener("onEmbeddedMessagingWindowMaximized", function() {
+            agentBtn.style.display = 'none';
         });
     </script>
     </body>
