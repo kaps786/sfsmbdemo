@@ -7,14 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-<style>
+    <style>
         /* --- VARIABILI COLORI SAILORNET --- */
         :root {
-            --sailornet-blue: #1A274F; /* Blu nautico profondo */
-            --sailornet-light-blue: #00509e; /* Blu più chiaro per hover */
-            --sailornet-red: #F3DB4D; /* Rosso per emergenze/preventivo */
-            --sailornet-top: #1A274F; /* Blu scurissimo della top bar */
+            --sailornet-blue: #1A274F; 
+            --sailornet-light-blue: #00509e; 
+            --sailornet-gold: #F3DB4D; /* Giallo oro per bottoni e accenti */
+            --sailornet-top: #1A274F; 
             --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --border-grey: #dddddd;
         }
 
         body, html {
@@ -27,7 +29,7 @@
             background-color: #f4f7f6;
         }
 
-        /* --- TOP BAR PICCOLA --- */
+        /* --- TOP BAR E HEADER --- */
         .top-bar {
             background-color: var(--sailornet-top);
             color: var(--text-light);
@@ -37,12 +39,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        .top-bar .left-info { display: flex; gap: 20px; }
         .top-bar .right-info { display: flex; gap: 20px; }
         .top-bar div { display: flex; align-items: center; gap: 5px; cursor: pointer; }
-        .top-bar .highlight { color: #F3DB4D; font-weight: bold; }
+        .top-bar .highlight { color: var(--sailornet-gold); font-weight: bold; }
 
-        /* --- HEADER E NAVIGAZIONE --- */
         header {
             background-color: #1A274F;
             height: 115px;
@@ -67,9 +67,6 @@
             letter-spacing: 1px;
             background-repeat: no-repeat;
         }
-        
-        /* Se hai un logo reale, sostituisci il testo con:
-        .logo-container img { max-width: 80%; height: auto; } */
 
         nav {
             flex-grow: 1;
@@ -96,23 +93,21 @@
             transition: color 0.3s;
         }
         
-        nav ul li:hover { color: var(--sailornet-red); }
+        nav ul li:hover { color: var(--sailornet-gold); }
         nav ul li i { margin-left: 4px; font-size: 10px; }
         
         .btn-preventivo {
             background-color: #1A274F;
-            color: #F3DB4D !important;
+            color: var(--sailornet-gold) !important;
             padding: 10px 20px;
             border-radius: 4px;
-            border: 1px solid #F3DB4D;
+            border: 1px solid var(--sailornet-gold);
         }
-        .btn-preventivo:hover { background-color: #F3DB4D; color: #1A274F !important;}
+        .btn-preventivo:hover { background-color: var(--sailornet-gold); color: #1A274F !important;}
         
-
-        /* --- HERO SECTION CON IMMAGINE CARICATA --- */
+        /* --- HERO SECTION E BOTTOM BAR --- */
         .hero {
             flex-grow: 1;
-            /* Utilizzo dell'immagine caricata con un overlay per far risaltare il testo */
             background-image: linear-gradient(rgba(0, 51, 102, 0.5), rgba(0, 51, 102, 0.7)), url('sfondo2.png');
             background-size: cover;
             background-position: center;
@@ -126,24 +121,9 @@
             min-height: 500px;
         }
 
-        .hero h1 {
-            color: white;
-            font-size: 48px;
-            font-weight: 700;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-            margin: 0 0 15px 0;
-        }
+        .hero h1 { color: white; font-size: 48px; font-weight: 700; text-shadow: 2px 2px 5px rgba(0,0,0,0.6); margin: 0 0 15px 0; }
+        .hero p { color: white; font-size: 18px; max-width: 700px; line-height: 1.5; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin: 0 0 30px 0; }
 
-        .hero p {
-            color: white;
-            font-size: 18px;
-            max-width: 700px;
-            line-height: 1.5;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            margin: 0 0 30px 0;
-        }
-
-        /* --- BOTTOM BAR BLU --- */
         .bottom-bar {
             background-color: var(--sailornet-blue);
             display: flex;
@@ -153,69 +133,83 @@
             color: white;
         }
 
-        .bottom-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.2s;
-        }
+        .bottom-item { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; text-align: center; transition: transform 0.2s; }
         .bottom-item:hover { transform: translateY(-5px); }
-        .bottom-item i { font-size: 28px; color: #F3DB4D; }
+        .bottom-item i { font-size: 28px; color: var(--sailornet-gold); }
         .bottom-item span { font-size: 14px; font-weight: 600; line-height: 1.4; text-transform: uppercase;}
 
         /* --- BOTTONI FLOTTANTI (AGENTFORCE) --- */
-        .floating-contact-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
+        .floating-contact-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+        .float-btn { width: 60px; height: 60px; border-radius: 50%; border: none; color: #FFF; font-size: 30px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background-color 0.2s; }
+        .float-btn:hover { transform: scale(1.1); }
+        .agent-btn { background-color: cadetblue; }
+        .agent-btn:hover { background-color: var(--sailornet-light-blue); }
+        #embeddedMessagingIconContainer, .embeddedMessagingIconContainer { display: none !important; }
+
+        /* --- STILI MODALE (POPUP) E WEB-TO-LEAD FORM --- */
+        .modal-overlay {
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.7); z-index: 2000; 
+            align-items: center; justify-content: center;
+        }
+        
+        .modal-content {
+            background: #fff; padding: 30px; border-radius: 8px; 
+            width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; 
+            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--sailornet-blue);
         }
 
-        .float-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: none;
-            color: #FFF;
-            font-size: 30px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease, background-color 0.2s;
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 28px; 
+            cursor: pointer; color: #333; font-weight: bold;
         }
 
-        .float-btn:hover {
-            transform: scale(1.1);
+        /* Step 1: Scelta Abbonamento */
+        .step-header { text-align: center; margin-bottom: 25px; }
+        .step-header h2 { color: var(--sailornet-blue); margin: 0 0 10px 0; }
+        .cards-container { display: flex; gap: 20px; flex-wrap: wrap; }
+        
+        .sub-card {
+            flex: 1; min-width: 200px; border: 2px solid var(--border-grey); 
+            border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; 
+            transition: all 0.3s ease; display: flex; flex-direction: column;
         }
+        .sub-card:hover { border-color: var(--sailornet-gold); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .sub-card h3 { color: var(--sailornet-blue); margin-top: 0; text-transform: uppercase; }
+        .sub-card .price { font-size: 22px; font-weight: bold; color: var(--text-dark); margin-bottom: 15px; }
+        .sub-card .price span { font-size: 14px; font-weight: normal; color: #777; }
+        .sub-card ul { list-style: none; padding: 0; margin: 0 0 20px 0; text-align: left; font-size: 13px; color: #555; flex-grow: 1; }
+        .sub-card ul li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+        .sub-card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--sailornet-gold); font-weight: bold; }
+        .btn-select-plan { background-color: var(--sailornet-blue); color: white; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background 0.3s;}
+        .sub-card:hover .btn-select-plan { background-color: var(--sailornet-gold); color: var(--sailornet-blue); }
 
-        .agent-btn {
-            background-color: cadetblue;
-        }
-
-        .agent-btn:hover {
-            background-color: var(--sailornet-light-blue);
-        }
-
-        /* Nascondi il widget standard di Salesforce per usare il nostro bottone custom */
-        #embeddedMessagingIconContainer, 
-        .embeddedMessagingIconContainer {
-            display: none !important;
-        }
+        /* Step 2: Form Web To Lead */
+        #view-form { display: none; }
+        .selected-plan-banner { background-color: #f4f7f6; padding: 15px; border-radius: 5px; text-align: center; margin-bottom: 20px; border-left: 4px solid var(--sailornet-gold); }
+        .selected-plan-banner strong { color: var(--sailornet-blue); font-size: 18px; }
+        
+        /* Stili Form ereditati dal tuo webToLead.html */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9em; color: var(--text-dark); }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid var(--border-grey); border-radius: 5px; font-size: 14px; box-sizing: border-box; font-family: 'Montserrat', sans-serif;}
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--sailornet-gold); }
+        .checkbox-group { display: flex; align-items: flex-start; margin-bottom: 15px; background-color: #fafafa; padding: 10px; border-radius: 5px; border: 1px solid var(--border-grey); }
+        .checkbox-group input[type="checkbox"] { margin-top: 3px; margin-right: 10px; width: 18px; height: 18px; accent-color: var(--sailornet-blue); cursor: pointer; }
+        .checkbox-group label { font-weight: normal; font-size: 0.85em; margin: 0; color: #555; line-height: 1.4; cursor: pointer; }
+        
+        .submit-btn { width: 100%; background-color: var(--sailornet-blue); color: var(--text-light); border: none; padding: 15px; font-size: 16px; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; margin-top: 10px; transition: background-color 0.3s; font-family: 'Montserrat', sans-serif;}
+        .submit-btn:hover:not(:disabled) { background-color: var(--sailornet-gold); color: var(--sailornet-blue); }
+        .submit-btn:disabled { background-color: #cccccc; color: #888888; cursor: not-allowed; opacity: 0.6; }
+        .back-btn { background: none; border: none; color: #777; cursor: pointer; text-decoration: underline; margin-bottom: 15px; font-family: 'Montserrat', sans-serif;}
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div class="left-info">
-        </div>
+        <div class="left-info"></div>
         <div class="right-info">
             <div><i class="fa-solid fa-phone"></i> Centrale Operativa: <span class="highlight">800 123 456</span></div>
             <div><i class="fa-solid fa-ship"></i> Soccorso H24</div>
@@ -225,8 +219,7 @@
     </div>
 
     <header>
-        <div class="logo-container">            
-        </div>
+        <div class="logo-container"></div>
         <nav>
             <ul>
                 <li>HOME</li>
@@ -235,7 +228,7 @@
                 <li>I NOSTRI SERVIZI <i class="fa-solid fa-chevron-down"></i></li>
                 <li>SAILORNET POINTS</li>
                 <li>CONTATTI</li>
-                <li class="btn-preventivo">ACQUISTA IL TUO ABBONAMENTO</li>
+                <li class="btn-preventivo" id="btn-apri-popup">ACQUISTA IL TUO ABBONAMENTO</li>
                 <li class="btn-preventivo">PREVENTIVO</li>
             </ul>
         </nav>
@@ -261,6 +254,121 @@
         </div>
     </div>
 
+    <div id="subscriptionModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            
+            <div id="view-subscriptions">
+                <div class="step-header">
+                    <h2>Scegli il tuo abbonamento</h2>
+                    <p>Seleziona il piano più adatto alle tue esigenze di navigazione.</p>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="sub-card" data-plan="Porto Sicuro">
+                        <h3>Porto Sicuro</h3>
+                        <div class="price">€ 165,00 <span>/ anno</span></div>
+                        <ul>
+                            <li>Recupero entro 6 miglia</li>
+                            <li>Tecnico a bordo (2h)</li>
+                            <li>Sommozzatore (1h)</li>
+                        </ul>
+                        <button class="btn-select-plan">Seleziona Piano</button>
+                    </div>
+
+                    <div class="sub-card" data-plan="Sottocosta">
+                        <h3>Sottocosta</h3>
+                        <div class="price">€ 198,00 <span>/ anno</span></div>
+                        <ul>
+                            <li>Recupero entro 12 miglia</li>
+                            <li>Tecnico a bordo (2h)</li>
+                            <li>Sommozzatore (1h)</li>
+                        </ul>
+                        <button class="btn-select-plan">Seleziona Piano</button>
+                    </div>
+
+                    <div class="sub-card" data-plan="Mare Aperto">
+                        <h3>Mare Aperto</h3>
+                        <div class="price">€ 295,00 <span>/ anno</span></div>
+                        <ul>
+                            <li>Recupero entro 20 miglia</li>
+                            <li>Tecnico a bordo (2h)</li>
+                            <li>Sommozzatore (1h)</li>
+                        </ul>
+                        <button class="btn-select-plan">Seleziona Piano</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-form">
+                <button class="back-btn" id="btn-back">← Torna ai piani</button>
+                
+                <div class="selected-plan-banner">
+                    Stai richiedendo l'attivazione del piano: <br>
+                    <strong id="selected-plan-name"></strong>
+                </div>
+
+                <form id="mysas-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHu00000uSpSk" method="POST">
+                    <input type="hidden" name="oid" value="00DHu00000uSpSk">
+                    <input type="hidden" name="retURL" value="https://www.sailornet.it/">
+                    <input type="hidden" name="lead_source" value="Sito Web">
+                    <input type="hidden" name="description" id="description" value="">
+
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;">
+                            <label for="first_name">Nome *</label>
+                            <input id="first_name" maxlength="40" name="first_name" type="text" required placeholder="Inserisci il tuo nome" />
+                        </div>
+                        <div class="form-group" style="flex:1;">
+                            <label for="last_name">Cognome *</label>
+                            <input id="last_name" maxlength="80" name="last_name" type="text" required placeholder="Inserisci il tuo cognome" />
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:15px;">
+                        <div class="form-group" style="flex:1;">
+                            <label for="mobile">Cellulare *</label>
+                            <input id="mobile" maxlength="40" name="mobile" type="tel" required placeholder="+39 3XX XXXXXXX" />
+                        </div>
+                        <div class="form-group" style="flex:1;">
+                            <label for="email">Indirizzo Email *</label>
+                            <input id="email" maxlength="80" name="email" type="email" required placeholder="latua@email.com" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="oggetto">Oggetto della richiesta</label>
+                        <select id="oggetto" name="oggetto" required aria-label="Oggetto della richiesta">
+                            <option value="">— Seleziona un’opzione —</option>
+                            <option value="Informazioni sui prodotti">Informazioni sui prodotti</option>
+                            <option value="Richiesta preventivo">Richiesta preventivo</option>
+                            <option value="Assistenza post-vendita">Assistenza post-vendita</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" name="Privacy_Custom_Field_ID" value="1" required>
+                        <label for="privacy">
+                            <strong>Privacy Policy *</strong><br>
+                            Acconsento al trattamento dei miei dati personali per l'erogazione dei servizi, in conformità alla normativa GDPR.
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="marketing" name="Marketing_Custom_Field_ID" value="1">
+                        <label for="marketing">
+                            <strong>Consenso Marketing</strong><br>
+                            Acconsento a ricevere comunicazioni commerciali e promozioni da parte di Sailornet.
+                        </label>
+                    </div>
+
+                    <input type="submit" id="submit-btn" name="submit" class="submit-btn" value="Completa Richiesta" disabled>
+                </form>
+            </div>
+
+        </div>
+    </div>
     <div class="floating-contact-container">
         <button id="agentforce-trigger" class="float-btn agent-btn" title="Chatta con il nostro Assistente Virtuale">
             <i class="fas fa-robot"></i>
@@ -270,57 +378,95 @@
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
-                embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
+                embeddedservice_bootstrap.settings.language = 'en_US'; 
                 embeddedservice_bootstrap.init(
                     '00DHu00000uSpSk',
                     'ServiceAgentChat',
                     'https://at1766405648944.my.site.com/ESWServiceAgentChat1777027888880',
-                    {
-                        scrt2URL: 'https://at1766405648944.my.salesforce-scrt.com'
-                    }
+                    { scrt2URL: 'https://at1766405648944.my.salesforce-scrt.com' }
                 );
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
-            }
+            } catch (err) { console.error('Error loading Embedded Messaging: ', err); }
         };
     </script>
     <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWServiceAgentChat1777027888880/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     <script>
+        // Logica Agentforce
         const agentBtn = document.getElementById('agentforce-trigger');
-
-        // 1. Logica di apertura al click
         agentBtn.addEventListener('click', function() {
-            // Nascondiamo il bottone immediatamente al click
             agentBtn.style.display = 'none';
-
-            try {
-                // Tenta di aprire la chat usando l'API standard
-                embeddedservice_bootstrap.utilAPI.launchChat();
-            } catch (e) {
-                console.log("Chat API non ancora pronta o errore: " + e);
-                // Fallback
+            try { embeddedservice_bootstrap.utilAPI.launchChat(); } 
+            catch (e) { 
                 const sfButton = document.querySelector('.embeddedServiceHelpButton .uiButton');
-                if(sfButton) sfButton.click();
+                if(sfButton) sfButton.click(); 
             }
         });
+        window.addEventListener("onEmbeddedMessagingWindowMinimized", () => agentBtn.style.display = 'flex');
+        window.addEventListener("onEmbeddedMessagingWindowClosed", () => agentBtn.style.display = 'flex');
+        window.addEventListener("onEmbeddedMessagingWindowMaximized", () => agentBtn.style.display = 'none');
 
-        // 2. Ascolta l'evento di chiusura/minimizzazione di Salesforce
-        // Quando l'utente chiude la chat, facciamo riapparire il robottino
-        window.addEventListener("onEmbeddedMessagingWindowMinimized", function() {
-            agentBtn.style.display = 'flex';
+        // Logica Popup / Modale
+        const modal = document.getElementById('subscriptionModal');
+        const btnApri = document.getElementById('btn-apri-popup');
+        const btnChiudi = document.getElementById('closeModal');
+        const btnBack = document.getElementById('btn-back');
+        const viewSubs = document.getElementById('view-subscriptions');
+        const viewForm = document.getElementById('view-form');
+        const cards = document.querySelectorAll('.sub-card');
+        const spanPlanName = document.getElementById('selected-plan-name');
+        
+        // Elementi del Form
+        const selectOggetto = document.getElementById('oggetto');
+        const hiddenDescription = document.getElementById('description');
+        const form = document.getElementById('mysas-form');
+        const privacyCheck = document.getElementById('privacy');
+        const submitBtn = document.getElementById('submit-btn');
+        let pianoScelto = "";
+
+        // Apri modale
+        btnApri.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            viewSubs.style.display = 'block';
+            viewForm.style.display = 'none';
         });
 
-        // (Sicurezza extra) Nel caso l'utente chiuda la chat definitivamente
-        window.addEventListener("onEmbeddedMessagingWindowClosed", function() {
-            agentBtn.style.display = 'flex';
+        // Chiudi modale
+        btnChiudi.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
+
+        // Torna indietro ai piani
+        btnBack.addEventListener('click', () => {
+            viewSubs.style.display = 'block';
+            viewForm.style.display = 'none';
         });
 
-        // (Sicurezza extra) Se la chat viene aperta in altri modi, nascondi il bottone
-        window.addEventListener("onEmbeddedMessagingWindowMaximized", function() {
-            agentBtn.style.display = 'none';
+        // Click su una Card (Piano)
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                pianoScelto = this.getAttribute('data-plan');
+                spanPlanName.textContent = pianoScelto + " - Abbonamento Annuale";
+                
+                // Pre-imposta l'oggetto nel form
+                selectOggetto.value = "Informazioni sui prodotti";
+                
+                // Cambia vista
+                viewSubs.style.display = 'none';
+                viewForm.style.display = 'block';
+            });
+        });
+
+        // Logica Validazione Form (Ereditata da webToLead)
+        privacyCheck.addEventListener('change', () => {
+            submitBtn.disabled = !privacyCheck.checked;
+        });
+
+        form.addEventListener('submit', function(e) {
+            // Aggiorniamo il campo Description con l'abbonamento scelto
+            var oggettoAttuale = selectOggetto.value;
+            hiddenDescription.value = "Cliente Privato - " + oggettoAttuale + " - Pacchetto Selezionato: " + pianoScelto;
+            
+            // Il form procederà con il submit standard verso Salesforce WebToLead
         });
     </script>
-    </body>
+</body>
 </html>
