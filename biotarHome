@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Prenota una consulenza gratuita - Biotarl | Disinfestazione Tarli Senza Pesticidi</title>
+	<style>
+		:root {
+			--verde-scuro: #1f5c2e;
+			--verde: #3a9e4f;
+			--verde-hover: #2d7a3e;
+			--verde-chiaro: #eaf6ee;
+			--testo-scuro: #24322a;
+			--grigio: #666;
+			--bordo: #dbe6dd;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #f4f8f5;
+			margin: 0;
+			padding: 0;
+			color: var(--testo-scuro);
+		}
+
+		/* ---- TOP BAR (stile sito reale) ---- */
+		.topbar {
+			background-color: var(--verde-scuro);
+			color: #fff;
+			font-size: 13px;
+			padding: 8px 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 24px;
+			flex-wrap: wrap;
+		}
+		.topbar a { color: #fff; text-decoration: none; }
+		.topbar a:hover { text-decoration: underline; }
+		.topbar .phone-top { font-weight: 600; }
+
+		/* ---- HEADER ---- */
+		.site-header {
+			background-color: #ffffff;
+			padding: 16px 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-bottom: 1px solid var(--bordo);
+		}
+		.site-header img {
+			max-width: 190px;
+			height: auto;
+		}
+
+		/* ---- HERO ---- */
+		.hero {
+			background:
+				linear-gradient(160deg, rgba(20,50,30,0.72), rgba(20,60,35,0.55)),
+				url('https://www.biotarli.it/wp-content/uploads/2022/12/slide-travi.jpg') center/cover no-repeat;
+			color: #fff;
+			text-align: center;
+			padding: 46px 20px 54px;
+		}
+		.hero .badge {
+			display: inline-block;
+			background-color: rgba(255,255,255,0.15);
+			border: 1px solid rgba(255,255,255,0.4);
+			border-radius: 20px;
+			padding: 6px 16px;
+			font-size: 12px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			margin-bottom: 14px;
+		}
+		.hero h1 {
+			font-size: 28px;
+			margin: 0 0 10px;
+			font-weight: 700;
+			line-height: 1.3;
+		}
+		.hero p.lead {
+			font-size: 15px;
+			max-width: 560px;
+			margin: 0 auto;
+			opacity: 0.95;
+			line-height: 1.5;
+		}
+		.hero .trust-badges {
+			margin-top: 22px;
+			display: flex;
+			justify-content: center;
+			gap: 22px;
+			flex-wrap: wrap;
+			font-size: 13px;
+			font-weight: 600;
+		}
+		.hero .trust-badges span {
+			background-color: rgba(255,255,255,0.12);
+			padding: 8px 14px;
+			border-radius: 6px;
+		}
+
+		/* ---- MAIN LAYOUT ---- */
+		.page-wrap {
+			max-width: 1000px;
+			margin: -34px auto 40px;
+			padding: 0 20px;
+			display: flex;
+			gap: 28px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		/* ---- FORM CONTAINER ---- */
+		.form-container {
+			background-color: #ffffff;
+			padding: 34px 34px 30px;
+			border-radius: 10px;
+			box-shadow: 0 10px 30px rgba(20, 60, 35, 0.15);
+			width: 100%;
+			max-width: 500px;
+			border-top: 5px solid var(--verde);
+		}
+
+		.form-header { text-align: center; margin-bottom: 24px; }
+
+		.form-header h2 {
+			color: var(--verde-scuro);
+			font-size: 21px;
+			margin: 0;
+			font-weight: 700;
+		}
+
+		.form-header .subtitle {
+			font-size: 13px;
+			color: var(--verde);
+			font-weight: 600;
+			margin-top: 6px;
+			text-transform: uppercase;
+			letter-spacing: 0.4px;
+		}
+
+		.form-header p {
+			color: var(--grigio);
+			font-size: 13.5px;
+			margin-top: 10px;
+			line-height: 1.5;
+		}
+
+		.form-header .phone {
+			font-size: 14px;
+			color: var(--testo-scuro);
+			margin-top: 12px;
+			font-weight: 600;
+		}
+		.form-header .phone a { color: var(--verde); text-decoration: none; }
+
+		.form-section { margin-bottom: 20px; }
+
+		.form-section-title {
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--verde-scuro);
+			margin-bottom: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.3px;
+			border-bottom: 2px solid var(--verde-chiaro);
+			padding-bottom: 6px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+			color: #333;
+			font-weight: 500;
+			font-size: 13.5px;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		select,
+		textarea {
+			width: 100%;
+			padding: 12px;
+			margin-bottom: 18px;
+			border: 1px solid var(--bordo);
+			border-radius: 5px;
+			box-sizing: border-box;
+			font-size: 15px;
+			font-family: inherit;
+			transition: border-color 0.3s ease, background-color 0.3s ease;
+			background-color: #fff;
+		}
+
+		textarea { min-height: 90px; resize: vertical; }
+
+		select {
+			cursor: pointer;
+			-webkit-appearance: none;
+			appearance: none;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231f5c2e' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: right 12px center;
+			padding-right: 36px;
+		}
+
+		input[type="text"]:focus,
+		input[type="email"]:focus,
+		select:focus,
+		textarea:focus {
+			border-color: var(--verde);
+			outline: none;
+			background-color: var(--verde-chiaro);
+		}
+
+		.privacy-row {
+			margin: 16px 0 20px;
+			display: flex;
+			align-items: flex-start;
+			gap: 10px;
+		}
+		.privacy-row input[type="checkbox"] { width: auto; margin: 4px 0 0; cursor: pointer; }
+		.privacy-row label { margin: 0; font-weight: 400; font-size: 12.5px; line-height: 1.4; cursor: pointer; }
+		.privacy-row a { color: var(--verde); text-decoration: none; font-weight: 600; }
+		.privacy-row a:hover { text-decoration: underline; }
+
+		input[type="submit"] {
+			width: 100%;
+			background-color: var(--verde);
+			color: white;
+			padding: 14px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 15.5px;
+			font-weight: 700;
+			cursor: pointer;
+			transition: background-color 0.3s ease, box-shadow 0.3s ease;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+		input[type="submit"]:hover { background-color: var(--verde-hover); box-shadow: 0 4px 14px rgba(58, 158, 79, 0.35); }
+		input[type="submit"]:disabled { background-color: #ccc; cursor: not-allowed; }
+		input[type="submit"]:disabled:hover { background-color: #ccc; box-shadow: none; }
+
+		/* ---- SIDE PANEL (garanzie / motivi di fiducia, stile sito reale) ---- */
+		.side-panel {
+			width: 100%;
+			max-width: 300px;
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			padding-top: 6px;
+		}
+		.side-card {
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 18px 20px;
+			box-shadow: 0 4px 14px rgba(20,60,35,0.08);
+			border-left: 4px solid var(--verde);
+		}
+		.side-card h3 {
+			font-size: 14px;
+			color: var(--verde-scuro);
+			margin: 0 0 6px;
+			font-weight: 700;
+		}
+		.side-card p { font-size: 13px; color: var(--grigio); margin: 0; line-height: 1.5; }
+		.side-card.hours { border-left-color: #a9c9b2; }
+
+		/* ---- FOOTER ---- */
+		.form-footer {
+			text-align: center;
+			margin-top: 22px;
+			font-size: 12px;
+			color: #999;
+			line-height: 1.6;
+		}
+		.form-footer a { color: var(--verde); text-decoration: none; }
+		.form-footer a:hover { text-decoration: underline; }
+
+		.site-footer {
+			background-color: var(--verde-scuro);
+			color: #d9e8dc;
+			text-align: center;
+			padding: 22px 20px;
+			font-size: 12.5px;
+			line-height: 1.7;
+			margin-top: 10px;
+		}
+		.site-footer a { color: #fff; }
+
+		/* ---- WHATSAPP CHAT LAUNCHER (Agentforce) ---- */
+		.wa-launcher {
+			position: fixed;
+			right: 22px;
+			bottom: 22px;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background-color: #25D366;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+			cursor: pointer;
+			z-index: 9999;
+			border: none;
+			padding: 0;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+		.wa-launcher:hover {
+			transform: scale(1.06);
+			box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+		}
+		.wa-launcher svg {
+			width: 32px;
+			height: 32px;
+			fill: #ffffff;
+		}
+		.wa-launcher .wa-pulse {
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background-color: #25D366;
+			opacity: 0.55;
+			animation: wa-pulse-anim 2.2s infinite;
+			z-index: -1;
+		}
+		@keyframes wa-pulse-anim {
+			0%   { transform: scale(1);   opacity: 0.55; }
+			70%  { transform: scale(1.7); opacity: 0; }
+			100% { transform: scale(1.7); opacity: 0; }
+		}
+		.wa-tooltip {
+			position: fixed;
+			right: 92px;
+			bottom: 38px;
+			background-color: #1f2a24;
+			color: #fff;
+			padding: 8px 14px;
+			border-radius: 6px;
+			font-size: 13px;
+			white-space: nowrap;
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.25s ease;
+			z-index: 9999;
+		}
+		.wa-tooltip.visible { opacity: 1; }
+		.wa-tooltip::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			right: -6px;
+			transform: translateY(-50%);
+			border-width: 6px 0 6px 6px;
+			border-style: solid;
+			border-color: transparent transparent transparent #1f2a24;
+		}
+		@media (max-width: 480px) {
+			.wa-launcher { right: 16px; bottom: 16px; width: 54px; height: 54px; }
+			.wa-launcher .wa-pulse { width: 54px; height: 54px; }
+			.wa-tooltip { right: 78px; bottom: 30px; font-size: 12px; }
+		}
+
+		@media (max-width: 720px) {
+			.page-wrap { margin-top: -20px; }
+			.hero h1 { font-size: 22px; }
+			.side-panel { max-width: 500px; }
+		}
+	</style>
+</head>
+<body>
+
+	<div class="topbar">
+		<span class="phone-top">📞 <a href="tel:+390584433198">0584 433 198</a></span>
+		<span>⭐ Recensioni su Trustpilot</span>
+		<span>🇮🇹 Operativi in tutta Italia</span>
+	</div>
+
+	<header class="site-header">
+		<img src="https://www.biotarli.it/wp-content/uploads/2022/12/logo-2013.fw-min.png" alt="Biotarl - Disinfestazione tarli senza pesticidi" onerror="this.style.display='none';">
+	</header>
+
+	<section class="hero">
+		<span class="badge">Trattamento certificato · 100% Bio</span>
+		<h1>Infestazione da tarli o altri insetti?<br>Prenota una consulenza gratuita</h1>
+		<p class="lead">Trattamenti a microonde e infrarossi, senza pesticidi, senza uscire di casa. Garanzia fino a 10 anni su tutti gli interventi.</p>
+		<div class="trust-badges">
+			<span>🌿 Nessun uso di pesticidi</span>
+			<span>🛡️ Garanzia fino a 10 anni</span>
+			<span>🏠 Puoi restare in casa</span>
+		</div>
+	</section>
+
+	<div class="page-wrap">
+
+		<div class="form-container">
+			<div class="form-header">
+				<h2>Prenota una consulenza gratuita</h2>
+				<p class="subtitle">Disinfestazione 100% biologica</p>
+				<p>Compila il form e ti contatteremo per una consulenza senza impegno.</p>
+				<p class="phone">Oppure chiama subito: <a href="tel:+390584433198">0584 433 198</a></p>
+			</div>
+
+			<form id="biotarli-form" action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00DKa00000cYOkv" method="POST">
+
+				<input type="hidden" name="oid" value="00DKa00000cYOkv">
+				<input type="hidden" name="retURL" value="https://www.biotarli.it/">
+				<input type="hidden" name="lead_source" value="Sito Web Biotarl">
+
+				<div class="form-section">
+					<div class="form-section-title">I tuoi dati</div>
+
+					<label for="first_name">Nome</label>
+					<input id="first_name" maxlength="40" name="first_name" size="20" type="text" placeholder="Il tuo nome" required>
+
+					<label for="last_name">Cognome</label>
+					<input id="last_name" maxlength="80" name="last_name" size="20" type="text" placeholder="Il tuo cognome" required>
+
+					<label for="mobile">Telefono / Cellulare</label>
+					<input id="mobile" maxlength="40" name="mobile" size="20" type="text" placeholder="0584 433 198" required>
+
+					<label for="email">Email</label>
+					<input id="email" maxlength="80" name="email" size="20" type="email" placeholder="nome@email.it" required>
+				</div>
+
+				<div class="form-section">
+					<div class="form-section-title">La tua richiesta</div>
+
+					<label for="state">Provincia</label>
+					<select id="state" name="state" required aria-label="Provincia">
+						<option value="">— Seleziona la tua provincia —</option>
+						<option value="Agrigento">Agrigento</option>
+						<option value="Alessandria">Alessandria</option>
+						<option value="Ancona">Ancona</option>
+						<option value="Aosta">Aosta</option>
+						<option value="Arezzo">Arezzo</option>
+						<option value="Ascoli Piceno">Ascoli Piceno</option>
+						<option value="Asti">Asti</option>
+						<option value="Avellino">Avellino</option>
+						<option value="Bari">Bari</option>
+						<option value="Barletta-Andria-Trani">Barletta-Andria-Trani</option>
+						<option value="Belluno">Belluno</option>
+						<option value="Benevento">Benevento</option>
+						<option value="Bergamo">Bergamo</option>
+						<option value="Biella">Biella</option>
+						<option value="Bologna">Bologna</option>
+						<option value="Bolzano">Bolzano</option>
+						<option value="Brescia">Brescia</option>
+						<option value="Brindisi">Brindisi</option>
+						<option value="Cagliari">Cagliari</option>
+						<option value="Caltanisetta">Caltanisetta</option>
+						<option value="Campobasso">Campobasso</option>
+						<option value="Caserta">Caserta</option>
+						<option value="Catania">Catania</option>
+						<option value="Catanzaro">Catanzaro</option>
+						<option value="Chieti">Chieti</option>
+						<option value="Como">Como</option>
+						<option value="Cosenza">Cosenza</option>
+						<option value="Cremona">Cremona</option>
+						<option value="Crotone">Crotone</option>
+						<option value="Cuneo">Cuneo</option>
+						<option value="Enna">Enna</option>
+						<option value="Fermo">Fermo</option>
+						<option value="Ferrara">Ferrara</option>
+						<option value="Firenze">Firenze</option>
+						<option value="Foggia">Foggia</option>
+						<option value="Forlì-Cesena">Forlì-Cesena</option>
+						<option value="Frosinone">Frosinone</option>
+						<option value="Genova">Genova</option>
+						<option value="Gorizia">Gorizia</option>
+						<option value="Grosseto">Grosseto</option>
+						<option value="Imperia">Imperia</option>
+						<option value="Isernia">Isernia</option>
+						<option value="L'Aquila">L'Aquila</option>
+						<option value="La Spezia">La Spezia</option>
+						<option value="Latina">Latina</option>
+						<option value="Lecce">Lecce</option>
+						<option value="Lecco">Lecco</option>
+						<option value="Livorno">Livorno</option>
+						<option value="Lodi">Lodi</option>
+						<option value="Lucca">Lucca</option>
+						<option value="Macerata">Macerata</option>
+						<option value="Mantova">Mantova</option>
+						<option value="Massa-Carrara">Massa-Carrara</option>
+						<option value="Matera">Matera</option>
+						<option value="Messina">Messina</option>
+						<option value="Milano">Milano</option>
+						<option value="Modena">Modena</option>
+						<option value="Monza e Brianza">Monza e Brianza</option>
+						<option value="Napoli">Napoli</option>
+						<option value="Novara">Novara</option>
+						<option value="Nuoro">Nuoro</option>
+						<option value="Oristano">Oristano</option>
+						<option value="Padova">Padova</option>
+						<option value="Palermo">Palermo</option>
+						<option value="Parma">Parma</option>
+						<option value="Pavia">Pavia</option>
+						<option value="Perugia">Perugia</option>
+						<option value="Pesaro e Urbino">Pesaro e Urbino</option>
+						<option value="Pescara">Pescara</option>
+						<option value="Piacenza">Piacenza</option>
+						<option value="Pisa">Pisa</option>
+						<option value="Pistoia">Pistoia</option>
+						<option value="Pordenone">Pordenone</option>
+						<option value="Potenza">Potenza</option>
+						<option value="Prato">Prato</option>
+						<option value="Ragusa">Ragusa</option>
+						<option value="Ravenna">Ravenna</option>
+						<option value="Reggio Calabria">Reggio Calabria</option>
+						<option value="Reggio Emilia">Reggio Emilia</option>
+						<option value="Rieti">Rieti</option>
+						<option value="Rimini">Rimini</option>
+						<option value="Roma">Roma</option>
+						<option value="Rovigo">Rovigo</option>
+						<option value="Salerno">Salerno</option>
+						<option value="Sassari">Sassari</option>
+						<option value="Savona">Savona</option>
+						<option value="Siena">Siena</option>
+						<option value="Siracusa">Siracusa</option>
+						<option value="Sondrio">Sondrio</option>
+						<option value="Taranto">Taranto</option>
+						<option value="Teramo">Teramo</option>
+						<option value="Terni">Terni</option>
+						<option value="Torino">Torino</option>
+						<option value="Trapani">Trapani</option>
+						<option value="Trento">Trento</option>
+						<option value="Treviso">Treviso</option>
+						<option value="Trieste">Trieste</option>
+						<option value="Udine">Udine</option>
+						<option value="Varese">Varese</option>
+						<option value="Venezia">Venezia</option>
+						<option value="Verbano-Cusio-Ossola">Verbano-Cusio-Ossola</option>
+						<option value="Vercelli">Vercelli</option>
+						<option value="Verona">Verona</option>
+						<option value="Vibo Valentia">Vibo Valentia</option>
+						<option value="Vicenza">Vicenza</option>
+						<option value="Viterbo">Viterbo</option>
+					</select>
+
+					<label for="00NKa00000tKKf9">Tipo di infestante</label>
+					<select id="00NKa00000tKKf9" name="00NKa00000tKKf9" required aria-label="Tipo di infestante">
+						<option value="">--None--</option>
+						<option value="Tarli_del_Legno">Tarli del Legno</option>
+						<option value="Zanzare">Zanzare</option>
+						<option value="Blatte_e_Scarafaggi">Blatte e Scarafaggi</option>
+						<option value="Topi_e_Ratti">Topi e Ratti</option>
+						<option value="Volatili">Volatili</option>
+						<option value="Vespe_e_Calabroni">Vespe e Calabroni</option>
+						<option value="Pulci_e_Zecche">Pulci e Zecche</option>
+						<option value="Condotte_e_Climatizzatori">Condotte e Climatizzatori</option>
+						<option value="Disinfestazione_Biologica">Disinfestazione Biologica</option>
+						<option value="Altro">Altro</option>
+					</select>
+
+					<label for="00NKa00000tLTxK">Tipo di struttura</label>
+					<select id="00NKa00000tLTxK" name="00NKa00000tLTxK" required aria-label="Tipo di struttura">
+						<option value="">— Seleziona la tua struttura —</option>
+						<option value="Villa">Villa</option>
+						<option value="Appartamento">Appartamento</option>
+						<option value="Palazzo">Palazzo</option>
+						<option value="Edificio pubblico">Edificio pubblico</option>
+						<option value="Casale">Casale</option>
+						<option value="Altro">Altro</option>
+					</select>
+
+					<label for="00NKa00000tLTxU">Zona da trattare</label>
+					<select id="00NKa00000tLTxU" name="00NKa00000tLTxU" required aria-label="Zona da trattare">
+						<option value="">— Seleziona la zona —</option>
+						<option value="Solaio">Solaio</option>
+						<option value="Travi">Travi</option>
+						<option value="Sottotetto">Sottotetto</option>
+						<option value="Mobili">Mobili</option>
+						<option value="Altre strutture in legno">Altre strutture in legno</option>
+					</select>
+
+					<label for="00NKa00000tLTxP">Sei un'azienda o privato?</label>
+					<select id="00NKa00000tLTxP" name="00NKa00000tLTxP" required aria-label="Tipo cliente">
+						<option value="">— Seleziona un'opzione —</option>
+						<option value="Privato">Privato</option>
+						<option value="Azienda">Azienda</option>
+						<option value="Ente Pubblico">Ente Pubblico</option>
+					</select>
+
+					<label for="company">Ragione sociale <span style="font-weight:400;color:#888;">(solo per aziende)</span></label>
+					<input id="company" maxlength="80" name="company" size="20" type="text" placeholder="Nome azienda">
+
+					<label for="description">Descrizione della richiesta</label>
+					<textarea id="description" name="description" placeholder="Descrivi il problema: segatura fine, fori nel legno, zone interessate…"></textarea>
+
+					<input id="00NKa00000tKKfB" name="00NKa00000tKKfB" value="demo-campaign" type="hidden">
+					<input id="00NKa00000tKKfD" name="00NKa00000tKKfD" value="website" type="hidden">
+				</div>
+
+				<div class="privacy-row">
+					<input type="checkbox" id="privacy" name="privacy">
+					<label for="privacy">Accetto i termini e le condizioni sull'informativa privacy ai sensi del GDPR (UE 2016/679). <a href="https://www.biotarli.it/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></label>
+				</div>
+
+				<input type="submit" id="submit-btn" name="submit" value="Prenota consulenza" disabled>
+			</form>
+
+			<div class="form-footer">
+				&copy; Biotarl Srl — Via Paleocapa, 1, 20121 Milano (MI) — P.IVA: 12653840962<br>
+				Operativi in tutta Italia — <a href="https://www.biotarli.it/privacy-policy/">Privacy Policy</a>
+			</div>
+		</div>
+
+		<aside class="side-panel">
+			<div class="side-card">
+				<h3>🛡️ Garanzia fino a 10 anni</h3>
+				<p>Su tutti i trattamenti, con estensione annuale grazie al programma di garanzia protetta.</p>
+			</div>
+			<div class="side-card">
+				<h3>🌿 Zero pesticidi</h3>
+				<p>Trattamenti a microonde e infrarossi: efficaci al 100%, sicuri per persone e animali.</p>
+			</div>
+			<div class="side-card">
+				<h3>🏠 Resti a casa tua</h3>
+				<p>Nessuna necessità di lasciare l'abitazione durante l'intervento.</p>
+			</div>
+			<div class="side-card hours">
+				<h3>🕒 Orari di apertura</h3>
+				<p>Lunedì – Venerdì: 8:00 – 19:00<br>Sabato: 9:00 – 17:00</p>
+			</div>
+		</aside>
+
+	</div>
+
+	<footer class="site-footer">
+		Biotarl Srl — Via Paleocapa, 1, 20121 Milano (MI) — P.IVA: 12653840962<br>
+		Operativi in tutta Italia · <a href="tel:+390584433198">0584 433 198</a> ·
+		<a href="https://www.biotarli.it/privacy-policy/">Privacy Policy</a>
+	</footer>
+
+	<!-- ---- WhatsApp Chat Launcher (Agentforce) ---- -->
+	<div class="wa-tooltip" id="wa-tooltip">Scrivici su WhatsApp 💬</div>
+	<button type="button" class="wa-launcher" id="wa-launcher" aria-label="Apri chat WhatsApp">
+		<span class="wa-pulse"></span>
+		<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+			<path d="M16.004 3C9.376 3 4 8.373 4 15c0 2.386.697 4.61 1.902 6.478L4 29l7.72-1.868A11.93 11.93 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3zm0 21.818c-1.95 0-3.79-.51-5.386-1.4l-.386-.222-4.58 1.108 1.128-4.463-.25-.402A9.77 9.77 0 0 1 5.182 15c0-5.968 4.854-10.818 10.822-10.818S26.826 9.032 26.826 15 21.972 24.818 16.004 24.818zm5.99-8.13c-.328-.164-1.94-.957-2.24-1.066-.3-.11-.518-.164-.737.164-.218.328-.845 1.066-1.036 1.285-.19.218-.382.246-.71.082-.328-.164-1.385-.51-2.638-1.626-.975-.87-1.633-1.944-1.824-2.272-.19-.328-.02-.505.144-.668.148-.147.328-.382.492-.573.164-.19.218-.328.328-.546.11-.218.055-.41-.027-.573-.082-.164-.737-1.774-1.01-2.43-.266-.64-.537-.553-.737-.563l-.628-.011c-.218 0-.573.082-.873.41-.3.328-1.146 1.12-1.146 2.73 0 1.61 1.173 3.166 1.337 3.384.164.218 2.31 3.527 5.598 4.945.782.338 1.393.54 1.868.69.785.25 1.5.215 2.065.13.63-.094 1.94-.793 2.213-1.558.273-.766.273-1.422.191-1.558-.082-.137-.3-.218-.628-.382z"/>
+		</svg>
+	</button>
+
+	<script>
+		(function() {
+			var form = document.getElementById('biotarli-form');
+			var privacyCheck = document.getElementById('privacy');
+			var submitBtn = document.getElementById('submit-btn');
+			var oidInput = form.querySelector('input[name="oid"]');
+
+			function toggleSubmit() {
+				submitBtn.disabled = !privacyCheck.checked;
+			}
+
+			privacyCheck.addEventListener('change', toggleSubmit);
+			toggleSubmit();
+
+			form.addEventListener('submit', function(e) {
+				if (oidInput && oidInput.value.indexOf('REPLACE') !== -1) {
+					e.preventDefault();
+					alert('Configurare l\'org ID Salesforce Biotarl nel form (Web-to-Lead) prima di pubblicare.');
+					return;
+				}
+				// Nota: la descrizione viene compilata direttamente dall'utente nel textarea "description",
+				// che è già mappato correttamente al campo Web-to-Lead "description".
+			});
+		})();
+	</script>
+
+	<!-- ============================================================ -->
+	<!-- Agentforce - Embedded Messaging (WhatsApp Chat)                -->
+	<!-- ============================================================ -->
+	<script type='text/javascript'>
+		function initEmbeddedMessaging() {
+			try {
+				embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+				// Nasconde il launcher di default di Salesforce: usiamo la nostra icona WhatsApp custom
+				embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
+
+				embeddedservice_bootstrap.init(
+					'00DKa00000cYOkv',
+					'Whatsapp_Chat',
+					'https://at1768811531754.my.site.com/ESWWhatsappChat1783084709168',
+					{
+						scrt2URL: 'https://at1768811531754.my.salesforce-scrt.com'
+					}
+				);
+			} catch (err) {
+				console.error('Error loading Embedded Messaging: ', err);
+			}
+		};
+	</script>
+	<script type='text/javascript' src='https://at1768811531754.my.site.com/ESWWhatsappChat1783084709168/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+	<script type="text/javascript">
+		(function () {
+			var launcher = document.getElementById('wa-launcher');
+			var tooltip = document.getElementById('wa-tooltip');
+			var messagingReady = false;
+
+			// Mostra un piccolo tooltip informativo al passaggio del mouse (desktop)
+			launcher.addEventListener('mouseenter', function () { tooltip.classList.add('visible'); });
+			launcher.addEventListener('mouseleave', function () { tooltip.classList.remove('visible'); });
+
+			// Quando Agentforce / Embedded Messaging è pronto, abilitiamo l'apertura della chat
+			window.addEventListener('onEmbeddedMessagingReady', function () {
+				messagingReady = true;
+			});
+
+			launcher.addEventListener('click', function () {
+				try {
+					if (messagingReady && window.embeddedservice_bootstrap && embeddedservice_bootstrap.utilAPI) {
+						// Apre la finestra di chat Agentforce/WhatsApp
+						embeddedservice_bootstrap.utilAPI.launchChat();
+					} else if (window.embeddedservice_bootstrap) {
+						// Fallback: il widget è caricato ma l'evento ready non è ancora arrivato,
+						// riprova comunque ad aprire la chat
+						embeddedservice_bootstrap.utilAPI.launchChat();
+					} else {
+						console.warn('Embedded Messaging non ancora caricato, riprova tra qualche secondo.');
+						tooltip.textContent = 'Chat in caricamento…';
+						tooltip.classList.add('visible');
+						setTimeout(function () {
+							tooltip.textContent = 'Scrivici su WhatsApp 💬';
+							tooltip.classList.remove('visible');
+						}, 2000);
+					}
+				} catch (err) {
+					console.error('Errore apertura chat Agentforce: ', err);
+				}
+			});
+		})();
+	</script>
+
+</body>
+</html>
