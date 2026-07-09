@@ -430,7 +430,17 @@
 				</div>
 
 				<div class="form-section">
+					
 					<div class="form-section-title">La tua richiesta</div>
+
+					<label for="street">Indirizzo</label>
+					<input type="text" required name="street" placeholder="Via Presti, 46"/>
+
+					<label for="city">Città</label>
+					<input required id="city" maxlength="40" name="city" size="20" type="text" placeholder="Siracusa"/>
+
+					<label for="zip">CAP</label>
+					<input required id="zip" maxlength="20" name="zip" size="20" type="text" placeholder="96100"/>
 
 					<label for="state">Provincia</label>
 					<select id="state" name="state" required aria-label="Provincia">
