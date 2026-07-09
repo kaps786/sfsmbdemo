@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fadda S.p.A. - Prodotti Siderurgici | Demo Agentforce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABILI COLORI: brand Atlas Cloud (usate per coerenza con gli altri asset Fadda costruiti in questo progetto) --- */
+        :root {
+            --fadda-navy: #06213e;
+            --fadda-blue: #068dc5;
+            --fadda-teal: #8ad5db;
+            --text-light: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background-color: #03121f;
+            color: var(--text-light);
+            font-size: 11px;
+            padding: 6px 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .top-bar div { display: flex; align-items: center; gap: 6px; }
+        .top-bar a { color: var(--text-light); text-decoration: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--fadda-navy);
+            min-height: 80px;
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            background-color: var(--text-light);
+            width: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav ul li {
+            color: var(--text-light);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        nav ul li i { margin-left: 3px; font-size: 9px; }
+
+        /* --- HERO --- */
+        .hero {
+            flex-grow: 1;
+            background: linear-gradient(135deg, rgba(6,33,62,0.92), rgba(6,141,197,0.75));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 30px;
+            text-align: center;
+            min-height: 340px;
+        }
+
+        .hero-inner { max-width: 780px; }
+
+        .hero h1 {
+            color: white;
+            font-size: 40px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.35);
+            margin: 0 0 16px 0;
+        }
+
+        .hero p {
+            color: var(--fadda-teal);
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- STRISCIA CATEGORIE --- */
+        .categories-bar {
+            background-color: var(--fadda-blue);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 18px 10px;
+            color: white;
+            flex-wrap: wrap;
+        }
+        .cat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            padding: 6px 14px;
+        }
+        .cat-item i { font-size: 22px; }
+        .cat-item span { font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+
+        /* --- SEZIONE AZIENDA --- */
+        .about-section {
+            padding: 50px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about-section h2 {
+            color: var(--fadda-navy);
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
+        .about-section p {
+            color: #444;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .about-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat .number { font-size: 30px; font-weight: 700; color: var(--fadda-blue); }
+        .stat .label { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--fadda-navy);
+            color: white;
+            padding: 40px 30px 20px;
+            font-size: 13px;
+        }
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-col h4 {
+            color: var(--fadda-teal);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .footer-col p, .footer-col a {
+            color: #cfe6ee;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 11px;
+            color: #9fb8c4;
+        }
+
+        /* --- BOTTONE AGENTFORCE FLOAT (stile WhatsApp del template originale) --- */
+        .agentforce-float {
+            position: fixed;
+            width: 58px;
+            height: 58px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--fadda-blue);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 26px;
+            box-shadow: 0px 4px 14px rgba(0,0,0,0.35);
+            z-index: 1000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+        .agentforce-float:hover { transform: scale(1.06); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .logo-container { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div><i class="fa-solid fa-phone"></i> Sestu: <a href="tel:+3907022047">070 22047</a></div>
+        <div><i class="fa-solid fa-phone"></i> Macomer: <a href="tel:+39078572770">0785 72770</a></div>
+        <div><i class="fa-regular fa-envelope"></i> <a href="mailto:info@fadda.net">info@fadda.net</a></div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://kaps786.github.io/aranzulla/logo1.png" alt="Fadda S.p.A.">
+        </div>
+        <nav>
+            <ul>
+                <li>HOMEPAGE</li>
+                <li>L'AZIENDA <i class="fa-solid fa-chevron-down"></i></li>
+                <li>PRODOTTI &amp; SERVIZI <i class="fa-solid fa-chevron-down"></i></li>
+                <li>LE NOSTRE CERTIFICAZIONI</li>
+                <li>CONTATTI</li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Molto più di un distributore</h1>
+            <p>Specializzati nella lavorazione, distribuzione e vendita di prodotti siderurgici.
+            Offriamo soluzioni di qualità in tutta la Sardegna.</p>
+        </div>
+    </section>
+
+    <div class="categories-bar">
+        <div class="cat-item"><i class="fa-solid fa-industry"></i><span>Carpenteria</span></div>
+        <div class="cat-item"><i class="fa-solid fa-building"></i><span>Edilizia</span></div>
+        <div class="cat-item"><i class="fa-solid fa-tractor"></i><span>Agropastorale</span></div>
+        <div class="cat-item"><i class="fa-solid fa-gears"></i><span>Le Nostre Lavorazioni</span></div>
+    </div>
+
+    <section class="about-section">
+        <h2>L'Azienda</h2>
+        <p>Fadda S.p.A. è una realtà specializzata nella commercializzazione, lavorazione e distribuzione di
+        prodotti siderurgici in tutto il territorio della Sardegna. Grazie alla movimentazione annuale di oltre
+        20.000 tonnellate di articoli, Fadda S.p.A. si posiziona al vertice della distribuzione nel mercato
+        siderurgico isolano.</p>
+        <div class="about-stats">
+            <div class="stat"><div class="number">20.000+</div><div class="label">Tonnellate/anno</div></div>
+            <div class="stat"><div class="number">2</div><div class="label">Sedi in Sardegna</div></div>
+            <div class="stat"><div class="number">60+</div><div class="label">Dipendenti</div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Sede Sestu</h4>
+                <p>S.S. Ex 131 km 10, 09028<br>Sestu (CA)</p>
+                <p>Tel: 070 22047</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sede Macomer</h4>
+                <p>Zona Industriale Tossilo, 08015<br>Macomer (NU)</p>
+                <p>Tel: 0785 72770</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti</h4>
+                <p><a href="mailto:info@fadda.net">info@fadda.net</a></p>
+                <p>Powered by Atlas Cloud</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Demo interna Atlas Cloud &mdash; non è il sito ufficiale Fadda S.p.A. (faddaspa.it)
+        </div>
+    </footer>
+
+    <!-- Bottone che apre la chat Agentforce -->
+    <button id="agentforce-trigger" class="agentforce-float" title="Chatta con il nostro assistente">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'it'; 
+
+                embeddedservice_bootstrap.init(
+                    '00DHu00000uSpSk',
+                    'MustEnergiaChat',
+                    'https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336',
+                    {
+                        scrt2URL: 'https://at1766405648944.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://at1766405648944.my.site.com/ESWMustEnergiaChat1767608257336/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+    <script>
+        document.getElementById('agentforce-trigger').addEventListener('click', function() {
+            try {
+                // Tenta di aprire la chat usando l'API standard di Salesforce MIAW
+                embeddedservice_bootstrap.utilAPI.launchChat();
+            } catch (e) {
+                console.log("Chat API non ancora pronta o errore: " + e);
+                // Fallback: simula il click sul bottone nascosto (se esiste)
+                const sfButton = document.querySelector('.embeddedServiceHelpButton .uiButton');
+                if(sfButton) sfButton.click();
+            }
+        });
+    </script>
+
+</body>
+</html>
