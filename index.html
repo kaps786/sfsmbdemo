@@ -172,13 +172,13 @@ const CONFIG = {
 
 const $=s=>document.querySelector(s);
 const useReal = Object.values(CONFIG.embedded).every(Boolean);
-let logged=false, opened=false;
+let logged=false, opened=false, convStarted=false, introSent=false;
 
 function setLogged(v){
   logged=v; document.body.classList.toggle('logged',v);
   $('#logoutBtn').style.display=v?'inline-block':'none';
   $('#who').textContent=v?'Giulia Ferri · cliente riconosciuta':'Non autenticato · demo';
-  if(useReal && window.embeddedservice_bootstrap){ pushIdentity(); }
+  if(useReal && window.embeddedservice_bootstrap){ pushIdentity(); if(v){ sendIntro(); } else { introSent=false; } }
   resetChat();
 }
 $('#loginBtn').onclick=()=>setLogged(true);
@@ -194,6 +194,17 @@ function pushIdentity(){
     } : {});
   }catch(e){console.warn('prechat',e)}
 }
+
+/* ---- identificazione: primo messaggio automatico con l'e-mail della cliente loggata ---- */
+function sendIntro(){
+  if(!useReal||!logged||!convStarted||introSent) return;
+  introSent=true;
+  try{
+    embeddedservice_bootstrap.utilAPI.sendTextMessage('Salve, sono '+CONFIG.cliente.nome+' '+CONFIG.cliente.cognome+' e ho effettuato l\'accesso all\'area clienti. La mia e-mail è '+CONFIG.cliente.email+'.');
+  }catch(e){introSent=false;console.warn('sendIntro',e)}
+}
+window.addEventListener('onEmbeddedMessagingConversationStarted',()=>{convStarted=true;setTimeout(sendIntro,800)});
+
 if(useReal){
   window.addEventListener('onEmbeddedMessagingReady',pushIdentity);
   const s=document.createElement('script');
