@@ -78,6 +78,16 @@ footer b{color:#fff}
 #chat form{display:flex;border-top:1px solid var(--line)}
 #chat input{flex:1;border:0;padding:14px;font-family:inherit;font-size:14px;outline:none}
 #chat form button{background:var(--orange);color:#fff;border:0;padding:0 18px;font-weight:700}
+
+/* canale WhatsApp (simulato) */
+body.wa #fab{background:#25d366;color:#06301a}
+body.wa #chat header{background:#075e54;border-bottom-color:#25d366}
+body.wa #msgs{background:#ece5dd}
+body.wa .m.me{background:#dcf8c6;color:#111}
+body.wa .chips button{background:#e7f8dd;border-color:#9ddf8c}
+.wa-link{display:inline-block;margin-top:14px;color:#fff;font-size:14px}
+.wa-link a{color:#7df0a8;font-weight:700}
+
 .sim{font-size:10px;text-align:center;color:#7a8a96;padding:4px;background:#fff}
 @media(max-width:820px){.hero{grid-template-columns:1fr}nav{display:none}}
 </style>
@@ -102,6 +112,7 @@ footer b{color:#fff}
     <h1>Energia chiara, assistenza che risponde davvero.</h1>
     <p>Luce e gas per la tua casa con offerte trasparenti. Chiedi tutto al nostro assistente virtuale: bollette, pratiche, reclami, offerte.</p>
     <div class="cta"><a class="btn" href="#offerte">Scopri le offerte</a><button class="btn ghost" onclick="openChat()">Parla con l'assistente</button></div>
+    <div class="wa-link" id="waLink"></div>
   </div>
   <div class="quote">
     <h3>Calcola il tuo risparmio</h3>
@@ -167,15 +178,36 @@ const CONFIG = {
     siteUrl: "https://at1791804484676.my.site.com/ESWNuovenergieWe1792579095193",
     scrt2Url: "https://at1791804484676.my.salesforce-scrt.com"
   },
+
+  /* Secondo canale: chat in stile WhatsApp con operatore umano (coda "Coda WhatsApp").
+  Si apre con ?canale=whatsapp. Compilare dopo aver creato il deployment in Setup. */
+  whatsapp: {
+    orgId: "00DgL00000fwyIj",
+    deploymentName: "Nuovenergie_WhatsApp",
+    siteUrl: "https://at1791804484676.my.site.com/ESWNuovenergieWh1792701396614",
+    scrt2Url: "https://at1791804484676.my.salesforce-scrt.com"
+  },
+
   cliente: { nome:"Giulia", cognome:"Ferri", email:"giulia.ferri@example.com", codiceFiscale:"FRRGLI90A41F205B" }
 };
 
 const $=s=>document.querySelector(s);
-const useReal = Object.values(CONFIG.embedded).every(Boolean);
+
+const canale = new URLSearchParams(location.search).get('canale') === 'whatsapp' ? 'whatsapp' : 'assistente';
+const E = canale === 'whatsapp' ? CONFIG.whatsapp : CONFIG.embedded;
+const useReal = Object.values(E).every(Boolean);
+if (canale === 'whatsapp') { document.body.classList.add('wa'); }
+try { if (sessionStorage.getItem('ne_logged') === '1') { setTimeout(() => setLogged(true), 0); } } catch (e) {}
+
+//const useReal = Object.values(CONFIG.embedded).every(Boolean);
+
 let logged=false, opened=false, convStarted=false, introSent=false;
 
 function setLogged(v){
   logged=v; document.body.classList.toggle('logged',v);
+
+  try { sessionStorage.setItem('ne_logged', v ? '1' : '0'); } catch (e) {}
+
   $('#logoutBtn').style.display=v?'inline-block':'none';
   $('#who').textContent=v?'Giulia Ferri · cliente riconosciuta':'Non autenticato · demo';
   if(useReal && window.embeddedservice_bootstrap){ pushIdentity(); if(v){ sendIntro(); } else { introSent=false; } }
@@ -205,6 +237,7 @@ function sendIntro(){
 }
 window.addEventListener('onEmbeddedMessagingConversationStarted',()=>{convStarted=true;setTimeout(sendIntro,800)});
 
+/*
 if(useReal){
   window.addEventListener('onEmbeddedMessagingReady',pushIdentity);
   const s=document.createElement('script');
@@ -212,6 +245,19 @@ if(useReal){
   s.onload=()=>{
     embeddedservice_bootstrap.settings.language='it';
     embeddedservice_bootstrap.init(CONFIG.embedded.orgId,CONFIG.embedded.deploymentName,CONFIG.embedded.siteUrl,{scrt2URL:CONFIG.embedded.scrt2Url});
+  };
+  document.body.appendChild(s);
+  $('#fab').style.display='none'; $('#chat').style.display='none';
+}
+*/
+
+if(useReal){
+  window.addEventListener('onEmbeddedMessagingReady',pushIdentity);
+  const s=document.createElement('script');
+  s.src=E.siteUrl+'/assets/js/bootstrap.min.js';
+  s.onload=()=>{
+    embeddedservice_bootstrap.settings.language='it';
+    embeddedservice_bootstrap.init(E.orgId,E.deploymentName,E.siteUrl,{scrt2URL:E.scrt2Url});
   };
   document.body.appendChild(s);
   $('#fab').style.display='none'; $('#chat').style.display='none';
@@ -248,6 +294,15 @@ function toggleChat(){$('#chat').classList.toggle('open')}
 function openChat(t){if(useReal){try{embeddedservice_bootstrap.utilAPI.launchChat()}catch(e){}return}
   $('#chat').classList.add('open');if(t)send(t)}
 resetChat();
+
+/* collegamento tra i due canali: stessa pagina, canale diverso (l'accesso simulato resta) */
+(function(){
+  const l = $('#waLink');
+  if (canale === 'whatsapp') { l.innerHTML = 'Canale attivo: <b>WhatsApp (simulato)</b> con un operatore · <a href="index.html">Torna all\'assistente</a>'; $('#fab').innerHTML = '<span>💬</span> WhatsApp'; }
+  else { l.innerHTML = 'Preferisci un operatore? <a href="index.html?canale=whatsapp">Scrivici su WhatsApp (simulato)</a>'; }
+})();
+
+
 </script>
 </body>
 </html>
