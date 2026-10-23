@@ -134,7 +134,7 @@ body.wa .chips button{background:#e7f8dd;border-color:#9ddf8c}
 
 <section class="block alt" id="area">
   <h2>Area clienti</h2>
-  <p class="sub">Accesso simulato: nessuna password, nessun dato reale.</p>
+  <p class="sub">Accesso: nessuna password, nessun dato reale.</p>
   <div class="area-off">Accedi come <b>Giulia Ferri</b> (pulsante in alto) per vedere la tua area personale. L'assistente ti riconoscerà e potrà parlare delle tue forniture, della tua pratica e del tuo reclamo.</div>
   <div class="area">
     <h3 style="margin:0;color:var(--head)">Ciao Giulia</h3>
@@ -298,8 +298,8 @@ resetChat();
 /* collegamento tra i due canali: stessa pagina, canale diverso (l'accesso simulato resta) */
 (function(){
   const l = $('#waLink');
-  if (canale === 'whatsapp') { l.innerHTML = 'Canale attivo: <b>WhatsApp (simulato)</b> con un operatore · <a href="index.html">Torna all\'assistente</a>'; $('#fab').innerHTML = '<span>💬</span> WhatsApp'; }
-  else { l.innerHTML = 'Preferisci un operatore? <a href="index.html?canale=whatsapp">Scrivici su WhatsApp (simulato)</a>'; }
+  if (canale === 'whatsapp') { l.innerHTML = 'Canale attivo: <b>WhatsApp</b> con un operatore · <a href="index.html">Torna all\'assistente</a>'; $('#fab').innerHTML = '<span>💬</span> WhatsApp'; }
+  else { l.innerHTML = 'Preferisci un operatore? <a href="index.html?canale=whatsapp">Scrivici su WhatsApp</a>'; }
 })();
 
 
