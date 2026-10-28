@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astracomm – Richiedi la tua offerta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Per usare i colori ufficiali Astracomm basta cambiare queste variabili */
+  :root{
+    --brand:#A6C454;      /* colore primario */
+    --accent:#111B30;     /* colore di accento */
+    --soft:#eef3f8;
+    --text:#1b2733;
+    --muted:#5c6b7a;
+    --ok:#2e844a;
+    --err:#ba0517;
+  }
+  .brand{display:flex;justify-content:center;align-items:center;text-decoration:none;padding:18px 20px;background:#fff}
+  .brand img{height:52px;width:auto;display:block}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--text);background:var(--soft);font-size:15px}
+  header{background:var(--brand);color:#fff;padding:18px 20px}
+  .wrap{max-width:980px;margin:0 auto}
+  .logo{font-weight:700;font-size:1.5rem;letter-spacing:.5px}
+  .logo span{color:var(--accent)}
+  .hero{padding:28px 20px 8px}
+  .hero h1{margin:0 0 6px;font-size:1.7rem;color:var(--brand)}
+  .hero p{margin:0;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;padding:16px 20px 40px}
+  @media(max-width:800px){.grid{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  label{display:block;font-weight:600;font-size:.85rem;margin:14px 0 4px}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid #c9d3de;border-radius:6px;font:inherit;background:#fff}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:.82rem;color:var(--muted)}
+  .consent input{width:auto;margin-top:3px}
+  button{margin-top:20px;background:var(--accent);color:var(--brand);border:0;border-radius:6px;padding:13px 26px;font:inherit;font-weight:700;cursor:pointer;width:100%}
+  button:hover{filter:brightness(.95)}
+  .side h3{margin:0 0 8px;color:var(--brand)}
+  .side ul{padding-left:18px;margin:0 0 16px;color:var(--muted)}
+  #qr{display:flex;justify-content:center;padding:10px 0}
+  .small{font-size:.78rem;color:var(--muted);text-align:center}
+  .req{color:var(--err)}
+  footer{text-align:center;color:var(--muted);font-size:.78rem;padding:0 20px 30px}
+</style>
+</head>
+<body>
+<!--<header><div class="wrap"><div class="logo">Astra<span>comm</span></div></div></header>-->
+<a class="brand" href="#">
+  <img src="logoAstracomm.png" alt="Astracomm LUCE & GAS">
+</a>
+
+<div class="wrap">
+  <section class="hero">
+    <h1>Richiedi la tua offerta luce e gas</h1>
+    <p>Compila il modulo: un nostro consulente ti ricontatta entro un giorno lavorativo.</p>
+  </section>
+
+  <div class="grid">
+    <div class="card">
+      <!-- Web-to-Lead Salesforce. Org Id: 00Dbl000005vW6j -->
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dbl000005vW6j" method="POST" id="f" target="wtl_frame">
+        <input type="hidden" name="oid" value="00Dbl000005vW6j">
+        <input type="hidden" name="lead_source" value="Web">
+
+        <div class="row">
+          <div><label for="first_name">Nome <span class="req">*</span></label>
+            <input id="first_name" name="first_name" maxlength="40" required></div>
+          <div><label for="last_name">Cognome <span class="req">*</span></label>
+            <input id="last_name" name="last_name" maxlength="80" required></div>
+        </div>
+
+        <label for="company">Azienda / Ragione sociale <span class="req">*</span></label>
+        <input id="company" name="company" maxlength="80" required placeholder="Per i privati: nome e cognome">
+
+        <div class="row">
+          <div><label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" maxlength="80" required></div>
+          <div><label for="phone">Telefono <span class="req">*</span></label>
+            <input id="phone" name="phone" type="tel" maxlength="40" required></div>
+        </div>
+
+        <label for="street">Indirizzo (via e numero civico)</label>
+        <input id="street" name="street" maxlength="255">
+
+        <div class="row">
+          <div><label for="zip">CAP</label>
+            <input id="zip" name="zip" maxlength="20" inputmode="numeric"></div>
+          <div><label for="city">Comune</label>
+            <input id="city" name="city" maxlength="40"></div>
+        </div>
+
+        <div class="row">
+          <div><label for="state">Provincia</label>
+            <input id="state" name="state" maxlength="20" placeholder="Es. FG"></div>
+          <div><label for="country">Paese</label>
+            <input id="country" name="country" maxlength="40" value="Italia"></div>
+        </div>
+
+        <label for="00Nbl000009zaPc">Tipo di cliente</label>
+        <select id="00Nbl000009zaPc" name="00Nbl000009zaPc" title="Tipo cliente">
+          <option>Privato</option>
+          <option>Azienda / Partita IVA</option>
+        </select>
+
+        <label for="00Nbl000009zaPa">Cosa ti interessa?</label>
+        <select id="00Nbl000009zaPa" name="00Nbl000009zaPa" title="Cosa ti interessa?">
+          <option>Luce</option>
+          <option>Gas</option>
+          <option>Luce + Gas</option>
+          <option>Fotovoltaico / efficientamento</option>
+        </select>
+
+        <label for="00Nbl000009zaPb">Note (facoltative)</label>
+        <textarea id="00Nbl000009zaPb" name="00Nbl000009zaPb" rows="3" maxlength="1000"></textarea>
+
+        <div class="consent">
+          <input type="checkbox" id="00Nbl000009zaPZ" name="00Nbl000009zaPZ" value="1" required>
+          <label for="00Nbl000009zaPZ" style="font-weight:400;margin:0">Ho letto l'informativa privacy e acconsento al trattamento dei miei dati per essere ricontattato in merito alla mia richiesta (Reg. UE 2016/679). <span class="req">*</span></label>
+        </div>
+
+        <button type="submit">Invia la richiesta</button>
+      </form>
+      <iframe name="wtl_frame" id="wtl_frame" title="invio" style="display:none"></iframe>
+      <div id="thanks" style="display:none;text-align:center;padding:30px 10px">
+        <div style="font-size:2.4rem;color:var(--ok)">&#10003;</div>
+        <h2 style="margin:8px 0;color:var(--accent)">Grazie per averci contattato!</h2>
+        <p style="color:var(--muted);margin:0 0 18px">Abbiamo ricevuto la tua richiesta: un nostro consulente ti ricontatter&agrave; entro un giorno lavorativo.</p>
+        <button type="button" id="again" style="width:auto">Invia un'altra richiesta</button>
+      </div>
+    </div>
+
+    <aside class="card side">
+      <h3>Perché Astracomm</h3>
+      <ul>
+        <li>Offerte su misura per famiglie e imprese</li>
+        <li>Un referente dedicato sul territorio</li>
+        <li>Fatture chiare e assistenza veloce</li>
+      </ul>
+      <h3>Inquadra il QR</h3>
+      <div id="qr"></div>
+      <div class="small">Apri questa pagina dal telefono</div>
+    </aside>
+  </div>
+</div>
+
+<footer>© Astracomm – Torremaggiore (FG)</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // Il QR punta alla pagina stessa (funziona quando e' pubblicata, es. su GitHub Pages)
+  try {
+    new QRCode(document.getElementById('qr'), {text: location.href.split('#')[0], width: 170, height: 170, colorDark: '#0b2a4a', colorLight: '#ffffff'});
+  } catch (e) {}
+  var f = document.getElementById('f'), fr = document.getElementById('wtl_frame'),
+      th = document.getElementById('thanks'), sent = false;
+  f.addEventListener('submit', function () { sent = true; });
+  fr.addEventListener('load', function () {
+    if (!sent) return;
+    sent = false;
+    f.style.display = 'none';
+    th.style.display = 'block';
+    document.querySelector('.hero h1').textContent = 'Grazie! Richiesta inviata';
+    document.querySelector('.hero p').textContent = 'Ti ricontatteremo al più presto.';
+  });
+  document.getElementById('again').addEventListener('click', function () {
+    f.reset();
+    th.style.display = 'none';
+    f.style.display = 'block';
+    document.querySelector('.hero h1').textContent = 'Richiedi la tua offerta luce e gas';
+    document.querySelector('.hero p').textContent = 'Compila il modulo: un nostro consulente ti ricontatta entro un giorno lavorativo.';
+  });
+</script>
+</body>
+</html>
